@@ -271,10 +271,7 @@ func (h *Handler) GetContextsFromK8SConfig(w http.ResponseWriter, req *http.Requ
 func (h *Handler) KubernetesPingHandler(w http.ResponseWriter, req *http.Request, _ *models.Preference, _ *models.User, provider models.Provider) {
 	token, ok := req.Context().Value(models.TokenCtxKey).(string)
 	if !ok {
-		w.WriteHeader(http.StatusInternalServerError)
-		if _, err := fmt.Fprintf(w, "failed to get the token for the user"); err != nil {
-			h.log.Error(err)
-		}
+		writeMeshkitError(w, ErrRetrieveUserToken(fmt.Errorf("no token for user")), http.StatusUnauthorized)
 		return
 	}
 
@@ -291,20 +288,14 @@ func (h *Handler) KubernetesPingHandler(w http.ResponseWriter, req *http.Request
 		// Get the context associated with this ID
 		k8sContext, err := provider.GetK8sContext(token, connectionID)
 		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-			if _, err := fmt.Fprintf(w, "failed to get kubernetes context for the given ID"); err != nil {
-				h.log.Error(err)
-			}
+			writeMeshkitError(w, ErrInvalidKubeContext(fmt.Errorf("not found"), connectionID), http.StatusNotFound)
 			return
 		}
 
 		// Create handler for the context
 		kubeclient, err := k8sContext.GenerateKubeHandler()
 		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			if _, err := fmt.Fprintf(w, "failed to get kubernetes config for the user"); err != nil {
-				h.log.Error(err)
-			}
+			writeMeshkitError(w, ErrInvalidKubeConfig(fmt.Errorf("no kube config for user"), ""), http.StatusNotFound)
 			return
 		}
 		version, err := kubeclient.KubeClient.ServerVersion()
@@ -335,10 +326,7 @@ func (h *Handler) K8sRegistrationHandler(w http.ResponseWriter, req *http.Reques
 
 	contexts := models.K8sContextsFromKubeconfig(provider, user.ID.String(), h.config.EventBroadcaster, *k8sConfigBytes, h.SystemID, map[string]interface{}{}, h.log) // here we are not concerned for the events becuase inside the middleware the contexts would have been verified.
 	h.K8sCompRegHelper.UpdateContexts(contexts).RegisterComponents(contexts, []models.K8sRegistrationFunction{mcore.RegisterK8sMeshModelComponents}, h.registryManager, h.config.EventBroadcaster, provider, user.ID.String(), false)
-	if _, err = w.Write([]byte(http.StatusText(http.StatusAccepted))); err != nil {
-		h.log.Error(ErrWriteResponse(err))
-		http.Error(w, ErrWriteResponse(err).Error(), http.StatusInternalServerError)
-	}
+	writeJSONMessage(w, map[string]string{"status": "accepted"}, http.StatusAccepted)
 }
 
 func (h *Handler) DiscoverK8SContextFromKubeConfig(userID string, token string, prov models.Provider) ([]*models.K8sContext, error) {
