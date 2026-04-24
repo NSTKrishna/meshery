@@ -167,6 +167,10 @@ const (
 	ErrInvalidFileRequestCode              = "meshery-server-1382"
 	ErrReadFileContentCode                 = "meshery-server-1383"
 	ErrExtensionEndpointNotRegisteredCode  = "meshery-server-1384"
+	ErrUserNotFoundCode                    = "meshery-server-1385"
+	ErrFetchTokenCode                      = "meshery-server-1386"
+	ErrShareDesignCode                     = "meshery-server-1387"
+	ErrShareFilterCode                     = "meshery-server-1388"
 )
 
 var (
@@ -698,4 +702,20 @@ func ErrReadFileContent(err error, file string) error {
 }
 func ErrExtensionEndpointNotRegistered(endpoint string) error {
 	return errors.New(ErrExtensionEndpointNotRegisteredCode, errors.Alert, []string{"No extension is registered for endpoint: ", endpoint}, []string{}, []string{"Requested extension is not loaded into this Meshery server"}, []string{"Install the extension or check that its provider registered the route on startup"})
+}
+
+func ErrUserNotFound(userID string) error {
+	return errors.New(ErrUserNotFoundCode, errors.Alert, []string{"User not found"}, []string{fmt.Sprintf("No user exists with id: %s", userID)}, []string{"The user may have been deleted or the id is incorrect"}, []string{"Verify the user id is correct and that the user has not been removed"})
+}
+
+func ErrFetchToken(err error) error {
+	return errors.New(ErrFetchTokenCode, errors.Alert, []string{"Failed to obtain authentication token from request context"}, []string{err.Error()}, []string{"The request may not be authenticated or the token was not propagated into the context"}, []string{"Ensure the request is authenticated and that upstream middleware injects the token into context"})
+}
+
+func ErrShareDesign(err error) error {
+	return errors.New(ErrShareDesignCode, errors.Alert, []string{"Failed to share design"}, []string{err.Error()}, []string{"The remote provider rejected the share request", "Network connectivity issue", "Invalid payload"}, []string{"Verify the share request payload and target recipients, then retry"})
+}
+
+func ErrShareFilter(err error) error {
+	return errors.New(ErrShareFilterCode, errors.Alert, []string{"Failed to share filter"}, []string{err.Error()}, []string{"The remote provider rejected the share request", "Network connectivity issue", "Invalid payload"}, []string{"Verify the share request payload and target recipients, then retry"})
 }
