@@ -160,7 +160,7 @@ func (h *Handler) KubernetesMiddleware(next func(http.ResponseWriter, *http.Requ
 		ctx := req.Context()
 		ctx, err := KubernetesMiddleware(ctx, h, provider, user, req.URL.Query()["contexts"])
 		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+			writeMeshkitError(w, err, http.StatusInternalServerError)
 			return
 		}
 
@@ -200,7 +200,7 @@ func (h *Handler) SessionInjectorMiddleware(next func(http.ResponseWriter, *http
 			// But if Cloud is temporarily unreachable, we must NOT destroy the user's session
 			// by logging them out — that would cause a redirect loop when Cloud recovers.
 			if isTransientProviderError(err) {
-				http.Error(w, "Remote provider temporarily unavailable. Please try again.", http.StatusServiceUnavailable)
+				writeMeshkitError(w, ErrTransientProvider(err), http.StatusServiceUnavailable)
 				return
 			}
 			// Genuine auth failure — logout and redirect to login
@@ -210,7 +210,7 @@ func (h *Handler) SessionInjectorMiddleware(next func(http.ResponseWriter, *http
 				provider.HandleUnAuthenticated(w, req)
 				return
 			}
-			http.Error(w, ErrGetUserDetails(err).Error(), http.StatusUnauthorized)
+			writeMeshkitError(w, ErrGetUserDetails(err), http.StatusUnauthorized)
 			return
 		}
 		prefObj, err := provider.ReadFromPersister(user.UserId)

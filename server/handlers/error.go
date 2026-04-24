@@ -162,6 +162,7 @@ const (
 	ErrFileTypeCode                        = "meshery-server-1366"
 	ErrCreatingOPAInstanceCode             = "meshery-server-1367"
 	ErrEncodeResponseCode                  = "meshery-server-1374"
+	ErrTransientProviderCode               = "meshery-server-1378"
 )
 
 var (
@@ -203,6 +204,20 @@ func ErrValidate(err error) error {
 }
 func ErrParsingCallBackUrl(err error) error {
 	return errors.New(ErrParsingCallBackUrlCode, errors.Alert, []string{"Failed to parse the callback URL"}, []string{err.Error()}, []string{"callback URL might be empty"}, []string{"Make sure the callback URL is not empty"})
+}
+
+// ErrTransientProvider wraps a transient failure talking to the remote provider
+// (e.g. Meshery Cloud). Callers should map this to HTTP 503 so clients can
+// distinguish it from an auth failure and retry rather than logging the user out.
+func ErrTransientProvider(err error) error {
+	return errors.New(
+		ErrTransientProviderCode,
+		errors.Alert,
+		[]string{"Remote provider temporarily unavailable"},
+		[]string{fmt.Sprintf("Meshery Cloud (the remote provider) did not respond: %v", err)},
+		[]string{"Network connectivity issue, Cloud outage, or firewall blocking egress."},
+		[]string{"Retry the request. If this persists, check https://status.meshery.io and verify Meshery Server can reach Meshery Cloud."},
+	)
 }
 func ErrFailToLoadK8sContext(err error) error {
 	return errors.New(ErrFailToLoadK8sContextCode, errors.Alert, []string{"Failed to load Kubernetes context"}, []string{err.Error()}, []string{}, []string{})
