@@ -193,6 +193,10 @@ const (
 	ErrMethodNotAllowedCode                = "meshery-server-1408"
 	ErrMissingRouteVariableCode            = "meshery-server-1409"
 	ErrRetrieveEventTypesCode              = "meshery-server-1410"
+	ErrDeprecatedAPICode                   = "meshery-server-1411"
+	ErrInvalidConnectionKindCode           = "meshery-server-1412"
+	ErrUpdateConnectionCode                = "meshery-server-1413"
+	ErrExportModelCode                     = "meshery-server-1414"
 )
 
 var (
@@ -839,4 +843,33 @@ func ErrMissingRouteVariable(name string, allowed ...string) error {
 		remedy = fmt.Sprintf("Include %q (one of %s) in the request path", name, strings.Join(allowed, ", "))
 	}
 	return errors.New(ErrMissingRouteVariableCode, errors.Alert, []string{fmt.Sprintf("Missing required route variable %q", name)}, []string{cause}, []string{"The client called the endpoint without supplying a required path segment."}, []string{remedy})
+}
+
+// ErrDeprecatedAPI is returned when a client invokes an endpoint that has
+// been retired. Emitted with HTTP 410 Gone. The `replacement` argument
+// should name the new endpoint so the UI can surface a clear upgrade path.
+func ErrDeprecatedAPI(replacement string) error {
+	return errors.New(ErrDeprecatedAPICode, errors.Alert, []string{"This API is deprecated"}, []string{fmt.Sprintf("The requested endpoint has been removed in favor of %s.", replacement)}, []string{"Client is using an older Meshery UI or mesheryctl that still targets the retired endpoint."}, []string{fmt.Sprintf("Use %s instead, and update the client to the latest Meshery release.", replacement)})
+}
+
+// ErrInvalidConnectionKind is returned when an endpoint scoped to a specific
+// connection kind (e.g. prometheus, grafana) is called with a connection
+// whose Kind does not match. Emitted with HTTP 400.
+func ErrInvalidConnectionKind(actual, expected string) error {
+	return errors.New(ErrInvalidConnectionKindCode, errors.Alert, []string{fmt.Sprintf("Connection is not of kind %q", expected)}, []string{fmt.Sprintf("The referenced connection is of kind %q but the endpoint expects %q.", actual, expected)}, []string{"The connectionID in the URL references a connection created for a different integration."}, []string{fmt.Sprintf("Pass the ID of a %s connection, or use the endpoint that matches the %s connection kind.", expected, actual)})
+}
+
+// ErrUpdateConnection wraps failures persisting connection metadata changes
+// (e.g. board selections on prometheus/grafana connections). Emitted with
+// HTTP 500.
+func ErrUpdateConnection(err error) error {
+	return errors.New(ErrUpdateConnectionCode, errors.Alert, []string{"Could not update the connection"}, []string{err.Error()}, []string{"Remote provider is unreachable.", "Connection has been deleted since it was loaded.", "Persisted metadata is corrupt."}, []string{"Verify provider connectivity and that the connection still exists, then retry."})
+}
+
+// ErrExportModel wraps failures in the ExportModel pipeline — building the
+// OCI image, writing the model definition, saving the tar/gzip archive, or
+// creating the scratch directories. The origin string identifies which
+// sub-step failed so the UI can surface a specific remediation.
+func ErrExportModel(err error, stage string) error {
+	return errors.New(ErrExportModelCode, errors.Alert, []string{fmt.Sprintf("Failed to export model during %s", stage)}, []string{err.Error()}, []string{"Temp directory is not writable.", "Model definition references a missing dependency.", "OCI/tar tooling produced an invalid artifact."}, []string{"Retry the export; if it persists, inspect server logs and disk availability under the temp directory."})
 }
