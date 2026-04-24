@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 )
 
@@ -167,5 +168,59 @@ func TestWriteJSONMessage_SetsHeadersAndEncodesPayload(t *testing.T) {
 	}
 	if decoded["message"] != "ok" {
 		t.Errorf("expected message %q, got %q", "ok", decoded["message"])
+	}
+}
+
+// TestWriteJSONEmptyObject_SetsHeadersAndWritesEmptyObject verifies the
+// empty-object helper honors the given status code, emits the JSON
+// Content-Type (without which clients like RTK Query can't trust that "{}"
+// is actually JSON), and writes the exact two-byte body "{}". The handler
+// call sites migrated to this helper previously wrote "{}" with no
+// Content-Type at all.
+func TestWriteJSONEmptyObject_SetsHeadersAndWritesEmptyObject(t *testing.T) {
+	rec := httptest.NewRecorder()
+	writeJSONEmptyObject(rec, http.StatusOK)
+
+	resp := rec.Result()
+	defer func() { _ = resp.Body.Close() }()
+
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("expected status %d, got %d", http.StatusOK, resp.StatusCode)
+	}
+	if ct := resp.Header.Get("Content-Type"); ct != "application/json; charset=utf-8" {
+		t.Errorf("expected Content-Type application/json, got %q", ct)
+	}
+	if nosniff := resp.Header.Get("X-Content-Type-Options"); nosniff != "nosniff" {
+		t.Errorf("expected X-Content-Type-Options: nosniff, got %q", nosniff)
+	}
+
+	body := rec.Body.String()
+	if body != "{}" {
+		t.Errorf("expected body %q, got %q", "{}", body)
+	}
+
+	// Parity check: the body must be valid JSON that decodes to an empty object.
+	var decoded map[string]any
+	if err := json.NewDecoder(strings.NewReader(body)).Decode(&decoded); err != nil {
+		t.Fatalf("body did not parse as JSON: %v", err)
+	}
+	if len(decoded) != 0 {
+		t.Errorf("expected empty object, got %v", decoded)
+	}
+}
+
+// TestWriteJSONEmptyObject_HonorsNon200Status confirms the helper is usable
+// for any status code a caller might pass (e.g. 201 Created on a resource
+// creation that has no payload to return). The plan's call sites all use
+// 200, but the helper's signature accepts any status and must honor it.
+func TestWriteJSONEmptyObject_HonorsNon200Status(t *testing.T) {
+	rec := httptest.NewRecorder()
+	writeJSONEmptyObject(rec, http.StatusCreated)
+
+	if rec.Code != http.StatusCreated {
+		t.Errorf("expected status %d, got %d", http.StatusCreated, rec.Code)
+	}
+	if body := rec.Body.String(); body != "{}" {
+		t.Errorf("expected body %q, got %q", "{}", body)
 	}
 }

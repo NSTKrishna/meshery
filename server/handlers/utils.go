@@ -126,6 +126,18 @@ func writeJSONMessage(w http.ResponseWriter, payload any, status int) {
 	_ = json.NewEncoder(w).Encode(payload)
 }
 
+// writeJSONEmptyObject writes "{}" with Content-Type: application/json.
+// Several handlers return an empty object to indicate "no data, but request
+// succeeded"; this helper centralizes the pattern and guarantees the header
+// so clients (notably RTK Query's Content-Type-dispatching baseQuery) never
+// see a bare "{}" with no declared Content-Type.
+func writeJSONEmptyObject(w http.ResponseWriter, status int) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	w.Header().Set("X-Content-Type-Options", "nosniff")
+	w.WriteHeader(status)
+	_, _ = w.Write([]byte("{}"))
+}
+
 const (
 	defaultPageSize = 25
 	queryParamTrue  = "true"

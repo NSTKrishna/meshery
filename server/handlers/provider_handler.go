@@ -115,8 +115,7 @@ func (h *Handler) ProviderComponentsHandler(
 			http.Error(w, ErrFailToLoadExtensions(err).Error(), http.StatusInternalServerError)
 			return
 		}
-		w.Header().Set("content-type", "application/json")
-		_, _ = w.Write([]byte("{}"))
+		writeJSONEmptyObject(w, http.StatusOK)
 	} else {
 		ServeReactComponentFromPackage(w, r, uiReqBasePath, provider)
 	}

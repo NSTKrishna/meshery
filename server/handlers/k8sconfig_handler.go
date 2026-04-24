@@ -229,7 +229,7 @@ func (h *Handler) deleteK8SConfig(_ *models.User, _ *models.Preference, w http.R
 	// 	return
 	// }
 
-	_, _ = w.Write([]byte("{}"))
+	writeJSONEmptyObject(w, http.StatusOK)
 }
 
 // GetContextsFromK8SConfig returns the context list for a given k8s config

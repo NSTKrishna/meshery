@@ -236,7 +236,7 @@ func (h *Handler) PrometheusConfigHandler(w http.ResponseWriter, req *http.Reque
 		return
 	}
 
-	_, _ = w.Write([]byte("{}"))
+	writeJSONEmptyObject(w, http.StatusOK)
 }
 
 // PrometheusPingHandler - fetches server version to simulate ping
@@ -268,7 +268,7 @@ func (h *Handler) PrometheusPingHandler(w http.ResponseWriter, req *http.Request
 		return
 	}
 
-	_, _ = w.Write([]byte("{}"))
+	writeJSONEmptyObject(w, http.StatusOK)
 }
 
 // GrafanaBoardImportForPrometheusHandler accepts a Grafana board json, parses it and returns the list of panels
@@ -468,5 +468,5 @@ func (h *Handler) SaveSelectedPrometheusBoardsHandler(w http.ResponseWriter, req
 		return
 	}
 	h.log.Debug("Board selection updated", updatedConnection.Metadata)
-	_, _ = w.Write([]byte("{}"))
+	writeJSONEmptyObject(w, http.StatusOK)
 }
