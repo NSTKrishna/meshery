@@ -176,6 +176,7 @@ const (
 	ErrUpdateUserCredentialCode            = "meshery-server-1391"
 	ErrDeleteUserCredentialCode            = "meshery-server-1392"
 	ErrEncodeUserCredentialCode            = "meshery-server-1393"
+	ErrUnknownConnectionKindCode           = "meshery-server-1394"
 )
 
 var (
@@ -743,4 +744,8 @@ func ErrDeleteUserCredential(err error) error {
 
 func ErrEncodeUserCredential(err error) error {
 	return errors.New(ErrEncodeUserCredentialCode, errors.Alert, []string{"Failed to encode user credential response"}, []string{err.Error()}, []string{"Credential payload could not be serialized to JSON"}, []string{"Check server logs for serialization details"})
+}
+
+func ErrUnknownConnectionKind(kind string) error {
+	return errors.New(ErrUnknownConnectionKindCode, errors.Alert, []string{"Unable to register resource as connection"}, []string{fmt.Sprintf("No matching connection definition found in the registry for kind: %s", kind)}, []string{"The specified connection kind is not registered with Meshery"}, []string{"Verify the connection kind is spelled correctly and that its definition is installed"})
 }
