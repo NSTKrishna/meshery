@@ -169,8 +169,8 @@ const (
 	ErrExtensionEndpointNotRegisteredCode  = "meshery-server-1384"
 	ErrUserNotFoundCode                    = "meshery-server-1385"
 	ErrFetchTokenCode                      = "meshery-server-1386"
-	ErrShareDesignCode                     = "meshery-server-1387"
-	ErrShareFilterCode                     = "meshery-server-1388"
+	ErrHandlerShareDesignCode              = "meshery-server-1387"
+	ErrHandlerShareFilterCode              = "meshery-server-1388"
 	ErrGetUserCredentialCode               = "meshery-server-1389"
 	ErrSaveUserCredentialCode              = "meshery-server-1390"
 	ErrUpdateUserCredentialCode            = "meshery-server-1391"
@@ -189,7 +189,7 @@ const (
 	ErrMigrateDatabaseTablesCode           = "meshery-server-1404"
 	ErrFetchResultsCode                    = "meshery-server-1405"
 	ErrMissingResultIDCode                 = "meshery-server-1406"
-	ErrGenerateUUIDCode                    = "meshery-server-1407"
+	ErrHandlerGenerateUUIDCode             = "meshery-server-1407"
 	ErrMethodNotAllowedCode                = "meshery-server-1408"
 	ErrMissingRouteVariableCode            = "meshery-server-1409"
 	ErrRetrieveEventTypesCode              = "meshery-server-1410"
@@ -750,11 +750,11 @@ func ErrFetchToken(err error) error {
 }
 
 func ErrShareDesign(err error) error {
-	return errors.New(ErrShareDesignCode, errors.Alert, []string{"Failed to share design"}, []string{err.Error()}, []string{"The remote provider rejected the share request", "Network connectivity issue", "Invalid payload"}, []string{"Verify the share request payload and target recipients, then retry"})
+	return errors.New(ErrHandlerShareDesignCode, errors.Alert, []string{"Failed to share design"}, []string{err.Error()}, []string{"The remote provider rejected the share request", "Network connectivity issue", "Invalid payload"}, []string{"Verify the share request payload and target recipients, then retry"})
 }
 
 func ErrShareFilter(err error) error {
-	return errors.New(ErrShareFilterCode, errors.Alert, []string{"Failed to share filter"}, []string{err.Error()}, []string{"The remote provider rejected the share request", "Network connectivity issue", "Invalid payload"}, []string{"Verify the share request payload and target recipients, then retry"})
+	return errors.New(ErrHandlerShareFilterCode, errors.Alert, []string{"Failed to share filter"}, []string{err.Error()}, []string{"The remote provider rejected the share request", "Network connectivity issue", "Invalid payload"}, []string{"Verify the share request payload and target recipients, then retry"})
 }
 
 func ErrGetUserCredential(err error) error {
@@ -830,7 +830,7 @@ func ErrMissingResultID() error {
 }
 
 func ErrGenerateUUID(err error) error {
-	return errors.New(ErrGenerateUUIDCode, errors.Alert, []string{"Failed to generate a unique identifier"}, []string{err.Error()}, []string{"Secure random source is unavailable on this host"}, []string{"Retry the request; if the error persists, verify the host's /dev/urandom or equivalent entropy source is accessible"})
+	return errors.New(ErrHandlerGenerateUUIDCode, errors.Alert, []string{"Failed to generate a unique identifier"}, []string{err.Error()}, []string{"Secure random source is unavailable on this host"}, []string{"Retry the request; if the error persists, verify the host's /dev/urandom or equivalent entropy source is accessible"})
 }
 
 func ErrMethodNotAllowed(method string) error {
