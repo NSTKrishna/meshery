@@ -202,6 +202,14 @@ const (
 	ErrPolicyEvalTimeoutCode               = "meshery-server-1417"
 	ErrPolicyEvalCode                      = "meshery-server-1418"
 	ErrInvalidBase64DataCode               = "meshery-server-1419"
+	ErrInvalidImportRequestCode            = "meshery-server-1422"
+	ErrConvertToDesignCode                 = "meshery-server-1423"
+	ErrCompressArtifactCode                = "meshery-server-1424"
+	ErrWriteRegistryLogsCode               = "meshery-server-1425"
+	ErrUpdateEntityStatusCode              = "meshery-server-1426"
+	ErrExtensionProxyCode                  = "meshery-server-1427"
+	ErrInitializeMachineCode               = "meshery-server-1428"
+	ErrSendMachineEventCode                = "meshery-server-1429"
 )
 
 var (
@@ -572,8 +580,13 @@ func ErrParsePattern(err error) error {
 	return errors.New(ErrParsePatternCode, errors.Alert, []string{"Error failed to parse pattern file"}, []string{err.Error()}, []string{}, []string{})
 }
 
+// ErrConvertPattern wraps failures in the in-place schema migration that
+// converts a stored design from an older schema version (e.g. v1alpha2)
+// to the current v1beta3 PatternFile shape. Emitted with HTTP 500
+// because the failure originates server-side during a download/view of
+// an already-persisted design, not from caller input.
 func ErrConvertPattern(err error) error {
-	return errors.New(ErrConvertPatternCode, errors.Alert, []string{"Error failed to convert design file to Cytoscape object"}, []string{err.Error()}, []string{}, []string{})
+	return errors.New(ErrConvertPatternCode, errors.Alert, []string{"Failed to migrate design to current schema version"}, []string{err.Error()}, []string{"The persisted design is in an older schema version (e.g. v1alpha2) whose ConvertFrom path rejected one of its fields.", "A field present in the older schema has no clean mapping to the current v1beta3 PatternFile shape."}, []string{"Inspect server logs for the underlying conversion error. If the design is irrecoverable, re-import its source content via the design import endpoint, which re-runs the full conversion pipeline."})
 }
 
 func ErrRemoteApplication(err error) error {
@@ -909,4 +922,83 @@ func ErrPolicyEval(err error) error {
 // Emitted with HTTP 400 because the client supplied malformed input.
 func ErrInvalidBase64Data(err error) error {
 	return errors.New(ErrInvalidBase64DataCode, errors.Alert, []string{"Invalid base64 data"}, []string{err.Error()}, []string{"The supplied payload was not a valid base64-encoded string.", "The payload may have been corrupted in transit or encoded with the wrong alphabet (URL-safe vs. standard)."}, []string{"Verify the client is base64-encoding the file with the standard alphabet before sending it.", "If the payload was hand-edited, re-encode it from the source bytes and retry."})
+}
+
+// ErrInvalidImportRequest wraps oneOf-invariant violations on the design
+// import endpoint — e.g. the request body had both a File and URL variant
+// set, or neither. Emitted with HTTP 400 because the caller needs to
+// correct the request shape, not the server to recover.
+func ErrInvalidImportRequest(err error) error {
+	return errors.New(ErrInvalidImportRequestCode, errors.Alert, []string{"Invalid design import request"}, []string{err.Error()}, []string{"The request body did not match exactly one variant of the import oneOf — the File variant requires `file` and `file_name`, the URL variant requires `url`.", "Both variants were provided, or neither was."}, []string{"Send a request body with exactly one variant set: either {\"file\": <bytes>, \"file_name\": \"design.yml\"} or {\"url\": \"https://...\"}."})
+}
+
+// ErrConvertToDesign wraps failures in the conversion pipeline that
+// turns a source file (Helm chart, Kubernetes manifest, Docker Compose,
+// Kustomize, or a Meshery design) into a v1beta3 design. These failures
+// are often rooted in malformed or unsupported input — a corrupt
+// archive, an unrecognized file extension, or a manifest the registry
+// could not map onto known component definitions — but the same
+// pipeline is also re-run server-side during download/view of a
+// non-design pattern, where the same wrap surfaces. The HTTP status
+// returned for this error is therefore determined by the calling
+// handler and request flow: 400 for the import endpoint where the
+// input is the request body, 500 for download/view where the input is
+// already-persisted SourceContent.
+func ErrConvertToDesign(err error) error {
+	return errors.New(ErrConvertToDesignCode, errors.Alert, []string{"Failed to convert uploaded file to a design"}, []string{err.Error()}, []string{"The uploaded file extension is not one of the supported import formats (.yml, .yaml, .json, .tar, .tar.gz, .tgz, .zip).", "The file is corrupt or its content does not parse as the type implied by its extension.", "The Kubernetes manifest references a kind/apiVersion that does not match any registered component definition."}, []string{"Verify the file is one of the supported formats and content-types, and that it parses cleanly outside Meshery.", "If the source is a Kubernetes manifest, ensure each kind it references has a corresponding model registered in the Meshery registry."})
+}
+
+// ErrCompressArtifact wraps tar-writer failures encountered while
+// packaging a Meshery design and its companion artifacthub-pkg.yml into
+// an OCI artifact for download. Emitted with HTTP 500 because the
+// failure originates server-side (in-memory buffer / archive writer)
+// rather than from caller input.
+func ErrCompressArtifact(err error) error {
+	return errors.New(ErrCompressArtifactCode, errors.Alert, []string{"Failed to compress design as OCI artifact"}, []string{err.Error()}, []string{"The server-side tar writer hit an I/O error while packaging the design YAML and the artifacthub-pkg metadata.", "Available memory or disk for the in-memory archive buffer was exhausted."}, []string{"Retry the export. If the failure persists, inspect server logs for the underlying writer error and ensure the host has sufficient resources."})
+}
+
+// ErrWriteRegistryLogs wraps failures of the helpers.WriteLogsToFiles
+// post-registration step that flushes per-host registration attempts
+// (component / model / relationship / policy / registry) to the file
+// pointed to by the REGISTRY_LOG_FILE setting. Emitted with HTTP 500
+// because the error is internal to the registry-log subsystem (file
+// permissions, disk full, marshal failure) rather than caller input.
+func ErrWriteRegistryLogs(err error) error {
+	return errors.New(ErrWriteRegistryLogsCode, errors.Alert, []string{"Failed to flush registry logs"}, []string{err.Error()}, []string{"The path configured in REGISTRY_LOG_FILE is not writable by the Meshery process (missing directory, missing permissions, or the disk is full).", "An in-memory log entry could not be marshaled into the on-disk format."}, []string{"Verify REGISTRY_LOG_FILE points to a writable path with sufficient free disk and that the Meshery process owns or has write permission to its parent directory."})
+}
+
+// ErrUpdateEntityStatus wraps registry failures when toggling the
+// `status` (enabled/disabled/etc.) of a model or component definition
+// through the entity-status endpoint. Emitted with HTTP 500 because
+// the failure originates in the registry persistence layer, not in
+// caller input — input validation runs upstream of this site.
+func ErrUpdateEntityStatus(err error) error {
+	return errors.New(ErrUpdateEntityStatusCode, errors.Alert, []string{"Failed to update entity status"}, []string{err.Error()}, []string{"The entity ID does not exist in the registry.", "The registry's persistence layer rejected the status update — typically a database connection or transaction failure."}, []string{"Verify the entity ID exists by listing the entities of the same type. If it does, retry the request and inspect server logs for the underlying registry error."})
+}
+
+// ErrExtensionProxy wraps failures of provider.ExtensionProxy when a
+// `/api/extensions/...` passthrough request cannot be served. Caller
+// chooses the HTTP status: 502 Bad Gateway for upstream/remote-provider
+// failures (the common case), 501 Not Implemented when the active
+// provider is the local provider, which has no extensions backend.
+func ErrExtensionProxy(err error) error {
+	return errors.New(ErrExtensionProxyCode, errors.Alert, []string{"Extension proxy request failed"}, []string{err.Error()}, []string{"The remote provider could not be reached (network failure, DNS resolution, or TLS handshake failure).", "The remote provider returned a non-2xx response that the proxy could not translate.", "The active provider is the local provider, which has no extensions backend."}, []string{"Verify the remote provider is reachable from this Meshery instance and that the user's session token has not expired. Retry the request after re-authenticating if the failure persists.", "If running against the local provider, switch to a remote provider (Layer5 Cloud) that exposes the extensions surface."})
+}
+
+// ErrInitializeMachine wraps failures of the connection state-machine
+// initializer (machines/helpers.InitializeMachineWithContext). Emitted
+// with HTTP 500 because the failure is internal to the state-machine
+// bootstrap (unknown machine type, persistence failure, or initial
+// state assignment failure) rather than caller input.
+func ErrInitializeMachine(err error) error {
+	return errors.New(ErrInitializeMachineCode, errors.Alert, []string{"Failed to initialize connection state machine"}, []string{err.Error()}, []string{"The connection kind has no registered machine type in the state-machine registry.", "The state machine's persister could not write the initial state to the database."}, []string{"Verify the connection kind is one of the supported types. If it is, retry the request and inspect server logs for the underlying machine-bootstrap error."})
+}
+
+// ErrSendMachineEvent wraps failures of *StateMachine.SendEvent, which
+// drives a connection through its registered transitions (e.g.
+// REGISTERED → DISCOVERED → CONNECTED). Emitted with HTTP 500 because
+// the event-driven transition failed inside the state machine, not in
+// caller input.
+func ErrSendMachineEvent(err error) error {
+	return errors.New(ErrSendMachineEventCode, errors.Alert, []string{"Failed to advance connection state machine"}, []string{err.Error()}, []string{"The requested event is not valid from the connection's current state.", "A side-effect action attached to the transition (e.g. provisioning, discovery) returned an error."}, []string{"Inspect the connection's current status before retrying. If the failure originates from a side-effect action, address the underlying cause (e.g. cluster reachability, credential validity) and retry."})
 }
