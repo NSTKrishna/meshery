@@ -115,11 +115,13 @@ func fetchFileFromURL(fileURL string) (FileToImport, error) {
 		}
 	}()
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		return FileToImport{}, fmt.Errorf("fetching %s returned HTTP %d %s", fileURL, resp.StatusCode, resp.Status)
+		// Wrap so every URL-fetch failure path surfaces with MeshKit
+		// metadata, matching the http.Client.Get error path above.
+		return FileToImport{}, models.ErrDoRequest(fmt.Errorf("returned HTTP %d %s", resp.StatusCode, resp.Status), "GET", fileURL)
 	}
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return FileToImport{}, err
+		return FileToImport{}, models.ErrDoRequest(err, "GET", fileURL)
 	}
 	return FileToImport{Data: body, FileName: getFileNameFromResponse(resp, fileURL)}, nil
 }

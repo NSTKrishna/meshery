@@ -580,8 +580,13 @@ func ErrParsePattern(err error) error {
 	return errors.New(ErrParsePatternCode, errors.Alert, []string{"Error failed to parse pattern file"}, []string{err.Error()}, []string{}, []string{})
 }
 
+// ErrConvertPattern wraps failures in the in-place schema migration that
+// converts a stored design from an older schema version (e.g. v1alpha2)
+// to the current v1beta3 PatternFile shape. Emitted with HTTP 500
+// because the failure originates server-side during a download/view of
+// an already-persisted design, not from caller input.
 func ErrConvertPattern(err error) error {
-	return errors.New(ErrConvertPatternCode, errors.Alert, []string{"Error failed to convert design file to Cytoscape object"}, []string{err.Error()}, []string{}, []string{})
+	return errors.New(ErrConvertPatternCode, errors.Alert, []string{"Failed to migrate design to current schema version"}, []string{err.Error()}, []string{"The persisted design is in an older schema version (e.g. v1alpha2) whose ConvertFrom path rejected one of its fields.", "A field present in the older schema has no clean mapping to the current v1beta3 PatternFile shape."}, []string{"Inspect server logs for the underlying conversion error. If the design is irrecoverable, re-import its source content via the design import endpoint, which re-runs the full conversion pipeline."})
 }
 
 func ErrRemoteApplication(err error) error {
@@ -927,13 +932,18 @@ func ErrInvalidImportRequest(err error) error {
 	return errors.New(ErrInvalidImportRequestCode, errors.Alert, []string{"Invalid design import request"}, []string{err.Error()}, []string{"The request body did not match exactly one variant of the import oneOf — the File variant requires `file` and `file_name`, the URL variant requires `url`.", "Both variants were provided, or neither was."}, []string{"Send a request body with exactly one variant set: either {\"file\": <bytes>, \"file_name\": \"design.yml\"} or {\"url\": \"https://...\"}."})
 }
 
-// ErrConvertToDesign wraps failures in the import pipeline that converts
-// an uploaded source file (Helm chart, Kubernetes manifest, Docker
-// Compose, Kustomize, or a Meshery design) into a v1beta3 design.
-// Emitted with HTTP 400 because the failure is almost always rooted in
-// malformed user-supplied input — a corrupt archive, an unrecognized
-// file extension, or a manifest the registry could not map onto known
-// component definitions.
+// ErrConvertToDesign wraps failures in the conversion pipeline that
+// turns a source file (Helm chart, Kubernetes manifest, Docker Compose,
+// Kustomize, or a Meshery design) into a v1beta3 design. These failures
+// are often rooted in malformed or unsupported input — a corrupt
+// archive, an unrecognized file extension, or a manifest the registry
+// could not map onto known component definitions — but the same
+// pipeline is also re-run server-side during download/view of a
+// non-design pattern, where the same wrap surfaces. The HTTP status
+// returned for this error is therefore determined by the calling
+// handler and request flow: 400 for the import endpoint where the
+// input is the request body, 500 for download/view where the input is
+// already-persisted SourceContent.
 func ErrConvertToDesign(err error) error {
 	return errors.New(ErrConvertToDesignCode, errors.Alert, []string{"Failed to convert uploaded file to a design"}, []string{err.Error()}, []string{"The uploaded file extension is not one of the supported import formats (.yml, .yaml, .json, .tar, .tar.gz, .tgz, .zip).", "The file is corrupt or its content does not parse as the type implied by its extension.", "The Kubernetes manifest references a kind/apiVersion that does not match any registered component definition."}, []string{"Verify the file is one of the supported formats and content-types, and that it parses cleanly outside Meshery.", "If the source is a Kubernetes manifest, ensure each kind it references has a corresponding model registered in the Meshery registry."})
 }
@@ -966,12 +976,13 @@ func ErrUpdateEntityStatus(err error) error {
 	return errors.New(ErrUpdateEntityStatusCode, errors.Alert, []string{"Failed to update entity status"}, []string{err.Error()}, []string{"The entity ID does not exist in the registry.", "The registry's persistence layer rejected the status update — typically a database connection or transaction failure."}, []string{"Verify the entity ID exists by listing the entities of the same type. If it does, retry the request and inspect server logs for the underlying registry error."})
 }
 
-// ErrExtensionProxy wraps failures of provider.ExtensionProxy when the
-// remote provider (Layer5 Cloud) cannot serve a `/api/extensions/...`
-// passthrough request. Emitted with HTTP 502 because the failure is in
-// the upstream remote provider, not in Meshery server's own handling.
+// ErrExtensionProxy wraps failures of provider.ExtensionProxy when a
+// `/api/extensions/...` passthrough request cannot be served. Caller
+// chooses the HTTP status: 502 Bad Gateway for upstream/remote-provider
+// failures (the common case), 501 Not Implemented when the active
+// provider is the local provider, which has no extensions backend.
 func ErrExtensionProxy(err error) error {
-	return errors.New(ErrExtensionProxyCode, errors.Alert, []string{"Extension proxy request failed"}, []string{err.Error()}, []string{"The remote provider could not be reached (network failure, DNS resolution, or TLS handshake failure).", "The remote provider returned a non-2xx response that the proxy could not translate."}, []string{"Verify the remote provider is reachable from this Meshery instance and that the user's session token has not expired. Retry the request after re-authenticating if the failure persists."})
+	return errors.New(ErrExtensionProxyCode, errors.Alert, []string{"Extension proxy request failed"}, []string{err.Error()}, []string{"The remote provider could not be reached (network failure, DNS resolution, or TLS handshake failure).", "The remote provider returned a non-2xx response that the proxy could not translate.", "The active provider is the local provider, which has no extensions backend."}, []string{"Verify the remote provider is reachable from this Meshery instance and that the user's session token has not expired. Retry the request after re-authenticating if the failure persists.", "If running against the local provider, switch to a remote provider (Layer5 Cloud) that exposes the extensions surface."})
 }
 
 // ErrInitializeMachine wraps failures of the connection state-machine

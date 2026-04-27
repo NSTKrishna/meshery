@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	stderrors "errors"
 	"fmt"
 	"net/http"
 	"path"
@@ -106,14 +107,26 @@ func (h *Handler) ExtensionsVersionHandler(w http.ResponseWriter, _ *http.Reques
 func (h *Handler) ExtensionsHandler(w http.ResponseWriter, req *http.Request, _ *models.Preference, _ *models.User, provider models.Provider) {
 	resp, err := provider.ExtensionProxy(req)
 	if err != nil {
-		// ExtensionProxy returns mostly raw stdlib errors plus the
-		// occasional ErrUnreachableRemoteProvider — wrap so the JSON
-		// envelope always carries MeshKit metadata regardless of which
-		// branch surfaced the failure. 502 because the failure is in
-		// the upstream remote provider, not this Meshery server.
+		// ExtensionProxy can fail for two distinct classes of reasons:
+		//   1. The active provider doesn't support the call at all — the
+		//      local provider always returns ErrLocalProviderSupport,
+		//      which is a configuration mismatch (extensions only work
+		//      against a remote provider) rather than an upstream
+		//      failure. Surface as 501 Not Implemented.
+		//   2. Anything else surfaced by the remote provider —
+		//      unreachable upstream, request-construction failure,
+		//      token retrieval failure, body-read failure. These all
+		//      represent failure to obtain a response from the
+		//      configured upstream, so 502 Bad Gateway is appropriate.
+		// Wrap with ErrExtensionProxy in both cases so the JSON
+		// envelope carries MeshKit metadata.
+		status := http.StatusBadGateway
+		if stderrors.Is(err, models.ErrLocalProviderSupport) {
+			status = http.StatusNotImplemented
+		}
 		wrappedErr := ErrExtensionProxy(err)
 		h.log.Error(wrappedErr)
-		writeMeshkitError(w, wrappedErr, http.StatusBadGateway)
+		writeMeshkitError(w, wrappedErr, status)
 		return
 	}
 
