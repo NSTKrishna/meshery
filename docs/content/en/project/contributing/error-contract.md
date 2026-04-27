@@ -85,7 +85,7 @@ status. **Buffer first, write once:**
 var buf bytes.Buffer
 if err := json.NewEncoder(&buf).Encode(payload); err != nil {
     // No headers committed yet — safe to emit a fresh error response.
-    writeMeshkitError(w, ErrEncoding(err, "<object name>"), http.StatusInternalServerError)
+    writeMeshkitError(w, models.ErrEncoding(err, "<object name>"), http.StatusInternalServerError)
     return
 }
 w.Header().Set("Content-Type", "application/json; charset=utf-8")
