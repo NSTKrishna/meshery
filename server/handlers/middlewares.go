@@ -197,12 +197,12 @@ func (h *Handler) SessionInjectorMiddleware(next func(http.ResponseWriter, *http
 			h.log.Error(ErrGetUserDetails(err))
 			// INTENTIONAL log/wire divergence. We log ErrGetUserDetails so the
 			// operational trail captures *what* failed (the get-user call), but
-			// we surface ErrTransientProvider on the wire so the client knows
-			// *why* the failure is transient (Cloud unreachable vs. genuine
-			// auth failure). Conflating the two would either flood logs with
-			// misleading transient classifications or hide the auth-vs-network
-			// distinction from clients. Don't "fix" this to match without
-			// reading PR #18919.
+			// we surface ErrTransientProvider on the wire so the client can
+			// distinguish between a transient failure (e.g., Cloud unreachable)
+			// and a genuine auth failure. Conflating the two would either flood
+			// logs with misleading transient classifications or hide the
+			// auth-vs-network distinction from clients. Don't "fix" this to
+			// match without reading PR #18919.
 			//
 			// Behavioral consequence: on a transient provider error we must NOT
 			// destroy the user's session by logging them out — that would cause
