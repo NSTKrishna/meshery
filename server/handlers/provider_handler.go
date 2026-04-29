@@ -59,8 +59,8 @@ func (h *Handler) ProvidersHandler(w http.ResponseWriter, _ *http.Request) {
 // handler) will fail the type assertion and 302 the request right back to
 // /provider — producing an infinite /user/login ⇄ /provider redirect loop.
 //
-// We hit exactly that loop on kanvas.new: stable-latest images are built
-// with PLAYGROUND=true baked in, and the kanvas.new deployment was missing
+// We hit exactly that loop with meshery extension images that are built
+// with PLAYGROUND=true baked in, and their deployment was missing
 // the PROVIDER env var. ProviderUIHandler entered the auto-select branch
 // (because PlaygroundBuild was true), wrote `meshery-provider=` (empty
 // because h.Provider was unset), and looped. PR #19006 already closed the
