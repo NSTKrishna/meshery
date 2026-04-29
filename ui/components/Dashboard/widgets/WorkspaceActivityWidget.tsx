@@ -6,12 +6,17 @@ import { useSelector } from 'react-redux';
 
 const WorkspaceActivityWidget = () => {
   const { organization: currentOrg } = useSelector((state) => state.ui);
-  const { data: workspaces } = useGetWorkspacesQuery({
-    orgID: currentOrg?.id,
-  });
+  const { data: workspaces } = useGetWorkspacesQuery(
+    { orgId: currentOrg?.id },
+    { skip: !currentOrg?.id },
+  );
 
   const [selectedWorkspace, setSelectedWorkspace] = useState('');
-  const { data: events, isLoading: isEventsLoading } = useGetEventsOfWorkspaceQuery(
+  const {
+    data: events,
+    isLoading: isEventsLoading,
+    isError: isEventsError,
+  } = useGetEventsOfWorkspaceQuery(
     {
       workspaceId: selectedWorkspace,
       pagesize: 5,
@@ -33,7 +38,7 @@ const WorkspaceActivityWidget = () => {
     <WorkspaceActivityCard
       selectedWorkspace={selectedWorkspace}
       handleWorkspaceChange={handleWorkspaceChange}
-      activities={events?.data}
+      activities={isEventsError ? [] : events?.data}
       workspaces={workspaces?.workspaces}
       isEventsLoading={isEventsLoading}
       workspacePagePath="/management/workspaces"

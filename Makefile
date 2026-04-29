@@ -181,6 +181,7 @@ server: dep-check
 	PROVIDER_BASE_URLS=$(MESHERY_CLOUD_PROD) \
 	PORT=$(PORT) \
 	DEBUG=true \
+	USE_GO_POLICY_ENGINE=$(USE_GO_POLICY_ENGINE) \
 	OTEL_CONFIG=$(OTEL_CONFIG) \
 	PROVIDER_CAPABILITIES_FILEPATH=$(PROVIDER_CAPABILITIES_FILEPATH) \
 	APP_PATH=$(APPLICATIONCONFIGPATH) \
@@ -292,7 +293,7 @@ server-playground: dep-check
 
 ## Lint check Meshery Server.
 golangci: error dep-check
-	golangci-lint run
+	golangci-lint run --config=.github/.golangci.yml --timeout=10m
 
 ## Build Meshery's protobufs.
 proto-build:
@@ -401,15 +402,21 @@ docs-setup:
 
 ## Run Meshery Docs. Listen for changes.
 docs: check-go
-	cd docs; hugo server -D -F 
+	cd docs; hugo server -D -F
 
 ## Run Meshery Docs. Do not listen for changes.
 docs-serve: check-go
 	cd docs; hugo server -D -F --watch=false
 
+## Run Meshery Docs. Do not listen for changes.
+docs-clean: check-go
+	cd docs; hugo --cleanDestinationDir
+	make docs
+
+
 ## Build Meshery Docs on your local machine.
-docs-build:
-	cd docs; hugo 
+docs-build: check-go
+	cd docs; hugo
 
 ## Build Meshery Docs for production. BASE_URL is optional.
 ## Example: make docs-build-production BASE_URL=https://example.com
@@ -468,28 +475,7 @@ helm-meshery-lint:
 #-----------------------------------------------------------------------------
 # Meshery APIs
 #-----------------------------------------------------------------------------
-.PHONY: swagger-build swagger swagger-docs-build graphql-docs-build graphql-build
-## Build Meshery REST API specifications
-swagger-build:
-	swagger generate spec -o ./server/helpers/swagger.yaml --scan-models
-
-## Generate and serve Meshery REST API specifications
-swagger: swagger-build
-	swagger serve ./server/helpers/swagger.yaml
-
-## Build Meshery REST API documentation
-swagger-docs-build:
-	swagger generate spec -o ./docs/data/swagger.yml --scan-models; \
-	swagger flatten ./docs/data/swagger.yml -o ./docs/_data/swagger.yml --with-expand --format=yaml
-
-
-## Building Meshery docs with redocly
-redocly-docs-build:
-	npx @redocly/cli build-docs ./docs/data/swagger.yml --config='redocly.yaml' -t custom.hbs
-
-## Build Meshery GraphQL API documentation
-graphql-docs-build:
-	cd docs; bundle exec rake graphql:compile_docs
+.PHONY: graphql-build
 
 ## Build Meshery GraphQl API specifications
 graphql-build: dep-check
@@ -586,7 +572,7 @@ ui-test-e2e-ci:
 	 @set -a; source .env; cd ui; set +a; npm run test:e2e:ci ; cd ..
 
 #-----------------------------------------------------------------------------
-# Testing - Meshery CLI 
+# Testing - Meshery CLI
 #-----------------------------------------------------------------------------
 .PHONY: mesheryctl-tests
 ### Run all Mesheryctl integration tests (Golang)

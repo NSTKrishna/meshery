@@ -1,5 +1,5 @@
 // @ts-nocheck
-/* eslint-disable react/jsx-filename-extension */
+
 import React, { useMemo } from 'react';
 import { timeAgo } from '../../../../utils/k8s-utils';
 import { getK8sClusterIdsFromCtxId, getK8sContextFromClusterId } from '@/utils/multi-ctx';
@@ -150,7 +150,7 @@ export const CustomResourceConfig = (
                         ? connectionMetadataState[CONNECTION_KINDS.KUBERNETES]?.icon
                         : ''
                     }
-                    handlePing={() => ping(context.name, context.server, context.connection_id)}
+                    handlePing={() => ping(context.name, context.server, context.connectionId)}
                   />
                 </>
               );
