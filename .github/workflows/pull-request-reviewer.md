@@ -3,9 +3,10 @@ name: Pull Request Reviewer
 description: Reviews newly opened pull requests and leaves concise, polite feedback as PR review comments
 on:
   pull_request_target:
-    types: [opened, reopened, ready_for_review]
+    types: [opened, reopened]
 permissions:
   contents: read
+  issues: read
   pull-requests: read
 engine: copilot
 timeout-minutes: 20
