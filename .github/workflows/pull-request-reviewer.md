@@ -1,6 +1,6 @@
 ---
 name: Pull Request Reviewer
-description: Reviews newly opened pull requests and leaves concise, polite feedback as PR review comments
+description: Reviews newly opened pull requests from trusted repository contributors and leaves concise, polite feedback as PR review comments
 on:
   pull_request_target:
     types: [opened, reopened]
@@ -14,9 +14,10 @@ tools:
   github:
     toolsets: [default]
 safe-outputs:
+  add-comment:
+    max: 1
   create-pull-request-review-comment:
     max: 5
-  submit-pull-request-review:
   missing-data: false
   missing-tool: false
   noop: false
@@ -31,6 +32,11 @@ network:
 
 Review the newly opened pull request and leave feedback directly on the PR.
 
+## Activation
+
+- This workflow runs on `pull_request_target`, so the compiled workflow intentionally limits activation to pull requests opened by trusted repository contributors with `admin`, `maintainer`, or `write` access.
+- Pull requests from forks and other external contributors are skipped by design so the workflow can safely use repository-scoped secrets and post review feedback.
+
 ## Scope
 
 - Review the PR title, description, changed files, and diff.
@@ -40,20 +46,20 @@ Review the newly opened pull request and leave feedback directly on the PR.
 
 ## Commenting rules
 
-- Always leave feedback in the pull request as one or more review comments.
+- Always leave feedback in the pull request as one or more comments.
 - Keep feedback polite, concise, and actionable.
 - Prefer inline review comments for specific issues tied to changed lines.
 - If you identify a change that should be made, explain exactly what should change and why.
 - Limit feedback to the most important issues; do not overwhelm the author with low-value comments.
-- If you do not find actionable issues, submit a brief review comment saying no blocking issues were found and optionally note one positive observation.
-- Never approve the PR and never request changes; submit a review with the `COMMENT` event only.
+- If you do not find actionable issues, post a brief PR comment saying no blocking issues were found and optionally note one positive observation.
+- Never approve the PR and never request changes.
 
 ## Process
 
 1. Read the pull request metadata and inspect the diff.
 2. Identify only substantive issues worth telling the author about.
 3. Create up to five inline review comments when specific file-level feedback is warranted.
-4. Submit a concise overall review summary that references the most important findings, or states that no blocking issues were found.
+4. Post one concise overall PR comment that references the most important findings, or states that no blocking issues were found.
 
 ## Usage
 
