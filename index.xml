@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Meshery Documentation on Documentation</title><link>/</link><description>Recent content in Meshery Documentation on Documentation</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 29 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>v1.0.34</title><link>/project/releases/v1.0.34/</link><pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate><guid>/project/releases/v1.0.34/</guid><description>&lt;h2 id="whats-new"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Meshery Documentation on Documentation</title><link>/</link><description>Recent content in Meshery Documentation on Documentation</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>v1.0.35</title><link>/project/releases/v1.0.35/</link><pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate><guid>/project/releases/v1.0.35/</guid><description>&lt;h2 id="whats-new"&gt;
+	What&amp;rsquo;s New
+&lt;/h2&gt;
+&lt;h2 id="-general"&gt;
+	🔤 General
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[CI] Makefile: wasm-engine target compatibility with macOS @jamieplu (#19821)&lt;/li&gt;
+&lt;li&gt;fix wasm build @aabidsofi19 (#19817)&lt;/li&gt;
+&lt;li&gt;Add repository details for each maintainer @miacycle (#19773)&lt;/li&gt;
+&lt;li&gt;Governance scaled out @miacycle (#19772)&lt;/li&gt;
+&lt;li&gt;fix(make): run go mod tidy before wasm-engine build @ShubhamSoni09 (#19814)&lt;/li&gt;
+&lt;li&gt;[Server] Add doc.go for native Go policy engine @guan404ming (#19271)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-meshery-cli"&gt;
+	⌨️ Meshery CLI
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;fix(mesheryctl): bridge v1beta3 design parse output to v1beta1 for evaluation @PragalvaXFREZ (#19804)&lt;/li&gt;
+&lt;li&gt;Compile Golang Policy Engine to WASM @guan404ming (#18939)&lt;/li&gt;
+&lt;li&gt;[mesheryctl] add csv support on relationship generate @Omkar-Ugal (#19640)&lt;/li&gt;
+&lt;li&gt;add design evaluate subcommand @aabidsofi19 (#17897)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-meshery-ui"&gt;
+	🖥 Meshery UI
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[UI] Fix deploy icon color in design action menu @Rajesh-Nagarajan-11 (#19789)&lt;/li&gt;
+&lt;li&gt;Compile Golang Policy Engine to WASM @guan404ming (#18939)&lt;/li&gt;
+&lt;li&gt;[CI] Update .nvmrc files from Node 18 to Node 22 to match engines field @Pranav-d33 (#19511)&lt;/li&gt;
+&lt;li&gt;Fix discard button error background @Rajesh-Nagarajan-11 (#19788)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-maintenance"&gt;
+	🧰 Maintenance
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;feat: add hardened runner step to GitHub workflows for enhanced security @ianrwhitney (#19818)&lt;/li&gt;
+&lt;li&gt;Compile Golang Policy Engine to WASM @guan404ming (#18939)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-documentation"&gt;
+	📖 Documentation
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Compile Golang Policy Engine to WASM @guan404ming (#18939)&lt;/li&gt;
+&lt;li&gt;docs: Fix broken Contributing to Meshery UI links @aprv10 (#19803)&lt;/li&gt;
+&lt;li&gt;[Docs] Add high-level overview of native Go policy engine @guan404ming (#19150)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-contributors"&gt;
+	👨🏽‍💻 Contributors
+&lt;/h2&gt;
+&lt;p&gt;Thank you to our contributors for making this release possible:
+@Omkar-Ugal, @PragalvaXFREZ, @Pranav-d33, @Rajesh-Nagarajan-11, @ShubhamSoni09, @aabidsofi19, @aprv10, @arjunmehta-git, @banana-three-join, @fitzergerald, @guan404ming, @hortison, @ianrwhitney, @jamieplu, @leecalcote, @marblom007, @meshery-ci, @miacycle, @pontusringblom, @suttonskate, @yi-nuo426 and ShubhamSoni09&lt;/p&gt;</description></item><item><title>v1.0.34</title><link>/project/releases/v1.0.34/</link><pubDate>Fri, 29 May 2026 00:00:00 +0000</pubDate><guid>/project/releases/v1.0.34/</guid><description>&lt;h2 id="whats-new"&gt;
 	What&amp;rsquo;s New
 &lt;/h2&gt;
 &lt;h2 id="-general"&gt;
@@ -33488,15 +33539,15 @@ mesheryctl completion bash &gt; $(brew --prefix)/etc/bash_completion.d/mesheryct
 	Architecture
 &lt;/h2&gt;
 &lt;p&gt;The following is a list of top-level frameworks, libraries, design system used in Meshery UI.&lt;/p&gt;</description></item><item><title>Contributing to Meshery UI - Dashboard Widgets</title><link>/project/contributing/contributing-ui-widgets/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/contributing/contributing-ui-widgets/</guid><description>&lt;div class="prereqs"&gt;&lt;p&gt;&lt;strong style="font-size: 20px;"&gt;Prerequisite Reading&lt;/strong&gt;&lt;/p&gt;
- &lt;ol&gt;&lt;li&gt;&lt;a href="contributing-ui"&gt;Contributing to Meshery UI&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;
+ &lt;ol&gt;&lt;li&gt;&lt;a href="./project/contributing/contributing-ui"&gt;Contributing to Meshery UI&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;
 &lt;/div&gt;
 &lt;p&gt;Meshery&amp;rsquo;s dashboard is a composable and extensible interface made up of individual widgets. These widgets allow contributors to surface specific Meshery data or capabilities within a modular layout system.&lt;/p&gt;
 &lt;p&gt;This guide walks through the process of creating and integrating a custom widget into the &lt;a href="https://playground.meshery.io/"&gt;Meshery dashboard&lt;/a&gt;. You’ll learn about layout configuration, design best practices, and how to register new widgets.&lt;/p&gt;
 &lt;h2 id="1-widget-architecture"&gt;
 	1. Widget Architecture
 &lt;/h2&gt;
-&lt;p&gt;Widgets are React components located &lt;a href="https://github.com/meshery/meshery/tree/master/ui/components/Dashboard/widgets"&gt;here&lt;/a&gt;:&lt;/p&gt;</description></item><item><title>Contributing to Meshery UI - Notification Center</title><link>/project/contributing/contributing-ui-notification-center/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/contributing/contributing-ui-notification-center/</guid><description>&lt;div class="prereqs"&gt;&lt;p&gt;&lt;strong style="font-size: 20px;"&gt;Prerequisite Reading&lt;/strong&gt;&lt;/p&gt;
- &lt;ol&gt;&lt;li&gt;&lt;a href="contributing-ui"&gt;Contributing to Meshery UI&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p&gt;Widgets are React components located &lt;a href="https://github.com/meshery/meshery/tree/master/ui/components/dashboard/widgets"&gt;here&lt;/a&gt;:&lt;/p&gt;</description></item><item><title>Contributing to Meshery UI - Notification Center</title><link>/project/contributing/contributing-ui-notification-center/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/contributing/contributing-ui-notification-center/</guid><description>&lt;div class="prereqs"&gt;&lt;p&gt;&lt;strong style="font-size: 20px;"&gt;Prerequisite Reading&lt;/strong&gt;&lt;/p&gt;
+ &lt;ol&gt;&lt;li&gt;&lt;a href="./project/contributing/contributing-ui"&gt;Contributing to Meshery UI&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;
 &lt;/div&gt;
 &lt;h2 id="table-of-contents"&gt;
 	Table of Contents
@@ -33525,7 +33576,7 @@ mesheryctl completion bash &gt; $(brew --prefix)/etc/bash_completion.d/mesheryct
 	What is the Notification Center?
 &lt;/h2&gt;
 &lt;p&gt;The Notification Center is a dedicated panel in Meshery’s UI that helps you monitor, understand, and respond to events across your system. It acts as a central place where you can see important updates related to your infrastructure, workloads, and Meshery’s internal operations.&lt;/p&gt;</description></item><item><title>Contributing to Meshery UI - Sistent</title><link>/project/contributing/contributing-ui-sistent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/contributing/contributing-ui-sistent/</guid><description>&lt;div class="prereqs"&gt;&lt;p&gt;&lt;strong style="font-size: 20px;"&gt;Prerequisite Reading&lt;/strong&gt;&lt;/p&gt;
- &lt;ol&gt;&lt;li&gt;&lt;a href="contributing-ui"&gt;Contributing to Meshery UI&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;
+ &lt;ol&gt;&lt;li&gt;&lt;a href="./project/contributing/contributing-ui"&gt;Contributing to Meshery UI&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;
 &lt;/div&gt;
 &lt;h2 id="contributing-to-meshery-ui---sistent"&gt;
 	&lt;a name="contributing-ui-sistent"&gt;Contributing to Meshery UI - Sistent&lt;/a&gt;
@@ -34034,7 +34085,7 @@ A &lt;strong&gt;&lt;a href="./concepts/logical/designs/"&gt;design&lt;/a&gt;&lt;
 &lt;h2 id="hands-on-lab"&gt;
 	Hands-on Lab
 &lt;/h2&gt;
-&lt;p&gt;Perform the following steps in order:&lt;/p&gt;</description></item><item><title>Kubevault</title><link>/extensions/models/kubevault/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault/</guid><description/></item><item><title>Kubevault Catalog</title><link>/extensions/models/kubevault-catalog/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-catalog/</guid><description/></item><item><title>Kubevault Crds</title><link>/extensions/models/kubevault-crds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-crds/</guid><description/></item><item><title>Kubevault Metrics</title><link>/extensions/models/kubevault-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-metrics/</guid><description/></item><item><title>Kubevault Operator</title><link>/extensions/models/kubevault-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-operator/</guid><description/></item><item><title>Kubevela</title><link>/extensions/models/kubevela/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevela/</guid><description/></item><item><title>Kubevirt</title><link>/extensions/models/kubevirt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevirt/</guid><description/></item><item><title>Kuma</title><link>/extensions/models/kuma/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kuma/</guid><description/></item><item><title>Kured</title><link>/extensions/models/kured/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kured/</guid><description/></item><item><title>Kusk Gateway</title><link>/extensions/models/kusk-gateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kusk-gateway/</guid><description/></item><item><title>Kyverno</title><link>/extensions/models/kyverno/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno/</guid><description/></item><item><title>Kyverno Monitor</title><link>/extensions/models/kyverno-monitor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno-monitor/</guid><description/></item><item><title>Kyverno Operator</title><link>/extensions/models/kyverno-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno-operator/</guid><description/></item><item><title>Latest Release</title><link>/project/releases/latest/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/releases/latest/</guid><description>&lt;h2&gt;v1.0.34&lt;/h2&gt;</description></item><item><title>Linkerd</title><link>/extensions/models/linkerd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/linkerd/</guid><description/></item><item><title>Linux</title><link>/extensions/models/linux/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/linux/</guid><description/></item><item><title>Litmus Chaos</title><link>/extensions/models/litmus-core/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/litmus-core/</guid><description/></item><item><title>Loki</title><link>/extensions/models/loki/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loki/</guid><description/></item><item><title>Loki Simple Scalable</title><link>/extensions/models/loki-simple-scalable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loki-simple-scalable/</guid><description/></item><item><title>Longhorn</title><link>/extensions/models/longhorn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/longhorn/</guid><description/></item><item><title>LoxiLB</title><link>/extensions/models/loxilb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loxilb/</guid><description/></item><item><title>Managing Connections</title><link>/guides/infrastructure-management/lifecycle-management/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/guides/infrastructure-management/lifecycle-management/</guid><description>&lt;p&gt;&lt;a name="lifecycle-management"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Perform the following steps in order:&lt;/p&gt;</description></item><item><title>Kubevault</title><link>/extensions/models/kubevault/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault/</guid><description/></item><item><title>Kubevault Catalog</title><link>/extensions/models/kubevault-catalog/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-catalog/</guid><description/></item><item><title>Kubevault Crds</title><link>/extensions/models/kubevault-crds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-crds/</guid><description/></item><item><title>Kubevault Metrics</title><link>/extensions/models/kubevault-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-metrics/</guid><description/></item><item><title>Kubevault Operator</title><link>/extensions/models/kubevault-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-operator/</guid><description/></item><item><title>Kubevela</title><link>/extensions/models/kubevela/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevela/</guid><description/></item><item><title>Kubevirt</title><link>/extensions/models/kubevirt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevirt/</guid><description/></item><item><title>Kuma</title><link>/extensions/models/kuma/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kuma/</guid><description/></item><item><title>Kured</title><link>/extensions/models/kured/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kured/</guid><description/></item><item><title>Kusk Gateway</title><link>/extensions/models/kusk-gateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kusk-gateway/</guid><description/></item><item><title>Kyverno</title><link>/extensions/models/kyverno/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno/</guid><description/></item><item><title>Kyverno Monitor</title><link>/extensions/models/kyverno-monitor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno-monitor/</guid><description/></item><item><title>Kyverno Operator</title><link>/extensions/models/kyverno-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno-operator/</guid><description/></item><item><title>Latest Release</title><link>/project/releases/latest/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/releases/latest/</guid><description>&lt;h2&gt;v1.0.35&lt;/h2&gt;</description></item><item><title>Linkerd</title><link>/extensions/models/linkerd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/linkerd/</guid><description/></item><item><title>Linux</title><link>/extensions/models/linux/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/linux/</guid><description/></item><item><title>Litmus Chaos</title><link>/extensions/models/litmus-core/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/litmus-core/</guid><description/></item><item><title>Loki</title><link>/extensions/models/loki/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loki/</guid><description/></item><item><title>Loki Simple Scalable</title><link>/extensions/models/loki-simple-scalable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loki-simple-scalable/</guid><description/></item><item><title>Longhorn</title><link>/extensions/models/longhorn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/longhorn/</guid><description/></item><item><title>LoxiLB</title><link>/extensions/models/loxilb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loxilb/</guid><description/></item><item><title>Managing Connections</title><link>/guides/infrastructure-management/lifecycle-management/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/guides/infrastructure-management/lifecycle-management/</guid><description>&lt;p&gt;&lt;a name="lifecycle-management"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Meshery manages hundreds of different types of cloud native infrastructure. See the &lt;a href="./extensibility/integrations"&gt;full set of integrations&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="cloud-native-infrastructure-lifecycle-management"&gt;
 	Cloud Native Infrastructure Lifecycle Management
@@ -35071,7 +35122,33 @@ mesheryctl design deploy -f [filepath] -s [source type]
 	Screenshots
 &lt;/h2&gt;
 &lt;p&gt;Usage of mesheryctl design deploy
-&lt;img class="content-image" src="./reference/images/pattern-onboard.png" alt="pattern-onboard-usage" /&gt;&lt;/p&gt;</description></item><item><title>mesheryctl-design-export</title><link>/reference/mesheryctl/design/export/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/mesheryctl/design/export/</guid><description>&lt;h1 id="mesheryctl-design-export"&gt;
+&lt;img class="content-image" src="./reference/images/pattern-onboard.png" alt="pattern-onboard-usage" /&gt;&lt;/p&gt;</description></item><item><title>mesheryctl-design-evaluate</title><link>/reference/mesheryctl/design/evaluate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/mesheryctl/design/evaluate/</guid><description>&lt;h1 id="mesheryctl-design-evaluate"&gt;
+	mesheryctl design evaluate
+&lt;/h1&gt;
+&lt;p&gt;Evaluate a design&lt;/p&gt;
+&lt;h2 id="synopsis"&gt;
+	Synopsis
+&lt;/h2&gt;
+&lt;p&gt;Evaluate a design by running relationship evaluation policies.
+The evaluated design is saved to the specified output file while an overview
+of evaluation actions is printed to the terminal.&lt;/p&gt;
+&lt;pre class='codeblock-pre'&gt;
+&lt;div class='codeblock'&gt;
+mesheryctl design evaluate [ID] [flags]
+
+&lt;/div&gt;
+&lt;/pre&gt; 
+&lt;h2 id="examples"&gt;
+	Examples
+&lt;/h2&gt;
+&lt;p&gt;Evaluate a design from a file and save the result&lt;/p&gt;
+&lt;pre class='codeblock-pre'&gt;
+&lt;div class='codeblock'&gt;
+mesheryctl design evaluate -f design.yaml -o evaluated-design.yaml
+
+&lt;/div&gt;
+&lt;/pre&gt; 
+&lt;p&gt;Evaluate a design by ID&lt;/p&gt;</description></item><item><title>mesheryctl-design-export</title><link>/reference/mesheryctl/design/export/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/mesheryctl/design/export/</guid><description>&lt;h1 id="mesheryctl-design-export"&gt;
 	mesheryctl design export
 &lt;/h1&gt;
 &lt;p&gt;Export a design from Meshery&lt;/p&gt;
@@ -35894,7 +35971,7 @@ mesheryctl model init [model-name] --path [path-to-location] (default is current
 &lt;h2 id="synopsis"&gt;
 	Synopsis
 &lt;/h2&gt;
-&lt;p&gt;List all registered models by pagingation (10 models per page)&lt;/p&gt;
+&lt;p&gt;List all registered models by pagination (10 models per page)&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
 mesheryctl model list [flags]
@@ -36042,7 +36119,7 @@ mesheryctl model view [model-name]
 
 &lt;/div&gt;
 &lt;/pre&gt; 
-&lt;p&gt;View a specific model in specifed format&lt;/p&gt;
+&lt;p&gt;View a specific model in specified format&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
 mesheryctl model view [model-name] --output-format [json|yaml]
@@ -36353,7 +36430,7 @@ mesheryctl registry update --spreadsheet-id 1DZHnzxYWOlJ69Oguz4LkRVTFM79kC2tuvdw
 &lt;h2 id="synopsis"&gt;
 	Synopsis
 &lt;/h2&gt;
-&lt;p&gt;Generate relationships documents from the google spreadsheets&lt;/p&gt;
+&lt;p&gt;Generate relationships documents from a CSV file or Google Spreadsheet&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
 mesheryctl relationship generate [flags]
@@ -36363,7 +36440,21 @@ mesheryctl relationship generate [flags]
 &lt;h2 id="examples"&gt;
 	Examples
 &lt;/h2&gt;
-&lt;p&gt;Generate relationships documentss&lt;/p&gt;
+&lt;p&gt;Generate relationships documents from a CSV file&lt;/p&gt;
+&lt;pre class='codeblock-pre'&gt;
+&lt;div class='codeblock'&gt;
+mesheryctl relationship generate --file &lt;path-to-relationships.csv&gt;
+
+&lt;/div&gt;
+&lt;/pre&gt; 
+&lt;p&gt;Generate relationships documents with a custom output path&lt;/p&gt;
+&lt;pre class='codeblock-pre'&gt;
+&lt;div class='codeblock'&gt;
+mesheryctl relationship generate --file &lt;path-to-relationships.csv&gt; --output &lt;path-to-output.json&gt;
+
+&lt;/div&gt;
+&lt;/pre&gt; 
+&lt;p&gt;Generate relationships documents from a Google Spreadsheet&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
 mesheryctl relationship generate --spreadsheet-id [Spreadsheet ID] --spreadsheet-cred $CRED
@@ -36375,7 +36466,9 @@ mesheryctl relationship generate --spreadsheet-id [Spreadsheet ID] --spreadsheet
 &lt;/h2&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+ -f, --file string path to the relationships CSV file
  -h, --help help for generate
+ -o, --output string path to the output JSON file
  --spreadsheet-cred string base64 encoded credential to download the spreadsheet
  --spreadsheet-id string spreadsheet ID for the integration spreadsheet
 
@@ -36988,7 +37081,7 @@ mesheryctl system context view
 &lt;p&gt;View a specified context&lt;/p&gt;</description></item><item><title>mesheryctl-system-dashboard</title><link>/reference/mesheryctl/system/dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/mesheryctl/system/dashboard/</guid><description>&lt;h1 id="mesheryctl-system-dashboard"&gt;
 	mesheryctl system dashboard
 &lt;/h1&gt;
-&lt;p&gt;Open the Meshery dashboard in browser.&lt;/p&gt;
+&lt;p&gt;Open Meshery UI in browser.&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
 mesheryctl system dashboard [flags]
@@ -36998,28 +37091,28 @@ mesheryctl system dashboard [flags]
 &lt;h2 id="examples"&gt;
 	Examples
 &lt;/h2&gt;
-&lt;p&gt;Open the Meshery dashboard in browser&lt;/p&gt;
+&lt;p&gt;Open Meshery UI in browser&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
 mesheryctl system dashboard
 
 &lt;/div&gt;
 &lt;/pre&gt; 
-&lt;p&gt;Open the Meshery dashboard in browser and use port-forwarding (if default port is taken already)&lt;/p&gt;
+&lt;p&gt;Open Meshery UI in browser and use port-forwarding (if default port is taken already)&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
 mesheryctl system dashboard --port-forward
 
 &lt;/div&gt;
 &lt;/pre&gt; 
-&lt;p&gt;Open the Meshery dashboard in browser and use port-forwarding, listen on port 9081 locally, forwarding traffic to meshery server in the pod&lt;/p&gt;
+&lt;p&gt;Open Meshery UI in browser and use port-forwarding, listen on port 9081 locally, forwarding traffic to meshery server in the pod&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
 mesheryctl system dashboard --port-forward -p 9081
 
 &lt;/div&gt;
 &lt;/pre&gt; 
-&lt;p&gt;(optional) skip opening of the Meshery dashboard in browser.&lt;/p&gt;</description></item><item><title>mesheryctl-system-delete</title><link>/reference/mesheryctl/system/delete/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/mesheryctl/system/delete/</guid><description>&lt;h1 id="mesheryctl-system-delete"&gt;
+&lt;p&gt;(optional) skip opening of MesheryUI in browser.&lt;/p&gt;</description></item><item><title>mesheryctl-system-delete</title><link>/reference/mesheryctl/system/delete/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/mesheryctl/system/delete/</guid><description>&lt;h1 id="mesheryctl-system-delete"&gt;
 	mesheryctl system delete
 &lt;/h1&gt;
 &lt;p&gt;Delete Meshery containers&lt;/p&gt;
