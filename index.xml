@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Meshery Documentation on Documentation</title><link>/</link><description>Recent content in Meshery Documentation on Documentation</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 03 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Overview</title><link>/guides/infrastructure-management/overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/guides/infrastructure-management/overview/</guid><description>&lt;h2 id="using-meshery-designs-to-manage-your-infrastructure"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Meshery Documentation on Documentation</title><link>/</link><description>Recent content in Meshery Documentation on Documentation</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 07 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Overview</title><link>/guides/infrastructure-management/overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/guides/infrastructure-management/overview/</guid><description>&lt;h2 id="using-meshery-designs-to-manage-your-infrastructure"&gt;
 	Using Meshery Designs to Manage Your Infrastructure
 &lt;/h2&gt;
 &lt;p&gt;Meshery is a versatile platform designed to streamline the lifecycle, configuration, and performance management of infrastructure across Kubernetes clusters.&lt;/p&gt;
@@ -121,7 +121,13 @@ guarantees.&lt;/p&gt;</description></item><item><title>Prometheus Metrics</title
 &lt;h2 id="explore-metrics-and-build-a-query"&gt;
 	Explore metrics and build a query
 &lt;/h2&gt;
-&lt;p&gt;Open the &lt;strong&gt;metric explorer&lt;/strong&gt; to compose a query:&lt;/p&gt;</description></item><item><title>High Availability &amp; Resiliency</title><link>/installation/production/high-availability-and-resiliency/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/installation/production/high-availability-and-resiliency/</guid><description>&lt;p&gt;Resiliency for Meshery has two layers: the platform-level self-healing that
+&lt;p&gt;Open the &lt;strong&gt;metric explorer&lt;/strong&gt; to compose a query:&lt;/p&gt;</description></item><item><title>Contributing to Operator, MeshSync &amp; Broker Settings</title><link>/project/contributing/contributing-controllers-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/contributing/contributing-controllers-config/</guid><description>&lt;p&gt;Meshery Operator, MeshSync and Meshery Broker are configured through a layered
+document, &lt;code&gt;MesheryControllersConfig&lt;/code&gt;, defined in
+&lt;a href="https://github.com/meshery/schemas"&gt;meshery/schemas&lt;/a&gt; as the &lt;code&gt;controllers_config&lt;/code&gt;
+construct (&lt;code&gt;v1alpha1&lt;/code&gt;). This page is the authoritative map of that surface for
+contributors: every setting, its storage, its reader, and its observable effect.&lt;/p&gt;
+&lt;p&gt;Keep it current. A setting added without a row here is a setting nobody can
+find, and a row without an end-to-end test is a setting nobody can trust.&lt;/p&gt;</description></item><item><title>High Availability &amp; Resiliency</title><link>/installation/production/high-availability-and-resiliency/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/installation/production/high-availability-and-resiliency/</guid><description>&lt;p&gt;Resiliency for Meshery has two layers: the platform-level self-healing that
 Kubernetes provides, and the application-level recovery behavior built into
 Meshery&amp;rsquo;s components. This page explains how Meshery behaves under failure, how
 to configure it for high availability, and—critically—where durable state lives
@@ -260,7 +266,76 @@ independently. For Kubernetes production deployments:&lt;/p&gt;</description></i
  &lt;summary&gt;
  &lt;h6&gt;Question: Why was Meshery created?&lt;/h6&gt;
 &lt;/summary&gt;
-&lt;p&gt;&lt;strong&gt;Answer:&lt;/strong&gt; As an open source, vendor-neutral project, Meshery was created out of the necessity to enable platform engineers, site reliability engineers, and DevSecOps teams to collaborate in the management of their infrastructure and workloads. Meshery was created as an extensible platform to serve a broad set of modern application management needs.&lt;/p&gt;</description></item><item><title>v1.0.64</title><link>/project/releases/v1.0.64/</link><pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate><guid>/project/releases/v1.0.64/</guid><description>&lt;h2 id="whats-new"&gt;
+&lt;p&gt;&lt;strong&gt;Answer:&lt;/strong&gt; As an open source, vendor-neutral project, Meshery was created out of the necessity to enable platform engineers, site reliability engineers, and DevSecOps teams to collaborate in the management of their infrastructure and workloads. Meshery was created as an extensible platform to serve a broad set of modern application management needs.&lt;/p&gt;</description></item><item><title>v1.0.65</title><link>/project/releases/v1.0.65/</link><pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate><guid>/project/releases/v1.0.65/</guid><description>&lt;h2 id="whats-new"&gt;
+	What&amp;rsquo;s New
+&lt;/h2&gt;
+&lt;h2 id="-general"&gt;
+	🔤 General
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[Docs] Update governance document for repository support process @yi-nuo426 (#21192)&lt;/li&gt;
+&lt;li&gt;[mesheryctl] Fix broken doc links in organization commands @KushagraB424 (#21186)&lt;/li&gt;
+&lt;li&gt;[skills] iterate-pr 2.4.0: never report an unfetched PR as a clean one @arjunmehta-git (#21176)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-meshery-cli"&gt;
+	⌨️ Meshery CLI
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[CLI] Make golden test failures readable, and fix the two defects that were hiding behind them @CodeAhmedJamil (#21168)&lt;/li&gt;
+&lt;li&gt;[Server][CLI][UI] Fix master&amp;rsquo;s red Go tests and the silent schemas-rename bug behind them @hamza-mohd (#21170)&lt;/li&gt;
+&lt;li&gt;[UI][CLI][Server] Complete the design-import canonical-sourcing audit @hamza-mohd (#21166)&lt;/li&gt;
+&lt;li&gt;[CLI] Fix 63 mesheryctl documentation links that 404 @CodeAhmedJamil (#21147)&lt;/li&gt;
+&lt;li&gt;[Server][CLI][CI] Fix Connection Lifecycle e2e failures: unknown-id delete, non-interactive listing, broker name drift, provider auth @hamza-mohd (#21120)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-meshery-ui"&gt;
+	🖥 Meshery UI
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[Server] Separate the explicit MeshSync deployment mode from its cache @CodeAhmedJamil (#21146)&lt;/li&gt;
+&lt;li&gt;Prevent duplicate environment &amp;amp; workspace creation and fix payload unmarshaling @rishiraj38 (#21184)&lt;/li&gt;
+&lt;li&gt;[UI] Drop the hand-rolled controllers-config RTK layer @CodeAhmedJamil (#21145)&lt;/li&gt;
+&lt;li&gt;[Docs] Map the Operator, MeshSync and Broker settings surface @CodeAhmedJamil (#21144)&lt;/li&gt;
+&lt;li&gt;[Docs] Add rendered shortcode examples to Contributing docs @smishraa30 (#20498)&lt;/li&gt;
+&lt;li&gt;[Server][CLI][UI] Fix master&amp;rsquo;s red Go tests and the silent schemas-rename bug behind them @hamza-mohd (#21170)&lt;/li&gt;
+&lt;li&gt;[UI][CLI][Server] Complete the design-import canonical-sourcing audit @hamza-mohd (#21166)&lt;/li&gt;
+&lt;li&gt;[CI] Make the E2E job able to fail, and fix what was hiding behind it @CodeAhmedJamil (#21140)&lt;/li&gt;
+&lt;li&gt;[Chore]: Update to Sistent v0.21.45 @l5io (#21121)&lt;/li&gt;
+&lt;li&gt;[UI] Source design-import request body shape from @meshery/schemas (follow-up to #21105) @hamza-mohd (#21114)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-maintenance"&gt;
+	🧰 Maintenance
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[Server] Separate the explicit MeshSync deployment mode from its cache @CodeAhmedJamil (#21146)&lt;/li&gt;
+&lt;li&gt;Fix: Update Notification Center docs with correct TSX references and&amp;hellip;. @Sohamsig (#18943)&lt;/li&gt;
+&lt;li&gt;[CI] Fix Slack good-first-issue notification failing on issue titles with double quotes @[copilot-swe-agent[bot]](&lt;a href="https://github.com/apps/copilot-swe-agent"&gt;https://github.com/apps/copilot-swe-agent&lt;/a&gt;) (#21193)&lt;/li&gt;
+&lt;li&gt;[Docs] Map the Operator, MeshSync and Broker settings surface @CodeAhmedJamil (#21144)&lt;/li&gt;
+&lt;li&gt;[Docs] Add rendered shortcode examples to Contributing docs @smishraa30 (#20498)&lt;/li&gt;
+&lt;li&gt;chore: add language matrix for actions in codeql analysis workflow @ianrwhitney (#21174)&lt;/li&gt;
+&lt;li&gt;chore: update CodeQL analysis workflow to include build modes for lan… @ianrwhitney (#21152)&lt;/li&gt;
+&lt;li&gt;[CI] Make the E2E job able to fail, and fix what was hiding behind it @CodeAhmedJamil (#21140)&lt;/li&gt;
+&lt;li&gt;[Server][CLI][CI] Fix Connection Lifecycle e2e failures: unknown-id delete, non-interactive listing, broker name drift, provider auth @hamza-mohd (#21120)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-documentation"&gt;
+	📖 Documentation
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[Server] Separate the explicit MeshSync deployment mode from its cache @CodeAhmedJamil (#21146)&lt;/li&gt;
+&lt;li&gt;Fix: Update Notification Center docs with correct TSX references and&amp;hellip;. @Sohamsig (#18943)&lt;/li&gt;
+&lt;li&gt;Create index.md @YASHMAHAKAL (#21183)&lt;/li&gt;
+&lt;li&gt;[Docs] Map the Operator, MeshSync and Broker settings surface @CodeAhmedJamil (#21144)&lt;/li&gt;
+&lt;li&gt;[Docs] Add rendered shortcode examples to Contributing docs @smishraa30 (#20498)&lt;/li&gt;
+&lt;li&gt;[Docs] Fix broken image references in notification-center.md and models @kanishksingh23 (#21177)&lt;/li&gt;
+&lt;li&gt;[Server][CLI][UI] Fix master&amp;rsquo;s red Go tests and the silent schemas-rename bug behind them @hamza-mohd (#21170)&lt;/li&gt;
+&lt;li&gt;[Server][CLI][CI] Fix Connection Lifecycle e2e failures: unknown-id delete, non-interactive listing, broker name drift, provider auth @hamza-mohd (#21120)&lt;/li&gt;
+&lt;li&gt;Partly Fix inconsistent &amp;lsquo;Related&amp;rsquo; section heading in docs @RaIyAn90 (#21100)&lt;/li&gt;
+&lt;li&gt;[Docs] Remove unused empty space above documentation content on mobil… @debkarma (#21050)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="-contributors"&gt;
+	👨🏽‍💻 Contributors
+&lt;/h2&gt;
+&lt;p&gt;Thank you to our contributors for making this release possible:
+@CodeAhmedJamil, @Copilot, @KushagraB424, @RaIyAn90, @Sohamsig, @YASHMAHAKAL, @alexquincy, @arjunmehta-git, @banana-three-join, @chellej, @debkarma, @fitzergerald, @hamza-mohd, @hortison, @ianrwhitney, @jijillery, @kanishksingh23, @l5io, @leecalcote, @marblom007, @meshery-ci, @pontusringblom, @rishiraj38, @simihablo, @smishraa30, @winkletinkle, @yi-nuo426, Ahmed Jamil and [copilot-swe-agent[bot]](&lt;a href="https://github.com/apps/copilot-swe-agent"&gt;https://github.com/apps/copilot-swe-agent&lt;/a&gt;)&lt;/p&gt;</description></item><item><title>v1.0.64</title><link>/project/releases/v1.0.64/</link><pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate><guid>/project/releases/v1.0.64/</guid><description>&lt;h2 id="whats-new"&gt;
 	What&amp;rsquo;s New
 &lt;/h2&gt;
 &lt;h2 id="-general"&gt;
@@ -1852,7 +1927,7 @@ independently. For Kubernetes production deployments:&lt;/p&gt;</description></i
 &lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Fix docs versions @CodexRaunak (#19736)&lt;/li&gt;
-&lt;li&gt;Update the go.mod to use the latest layer5io/docs @CodexRaunak (#19728)&lt;/li&gt;
+&lt;li&gt;Update the go.mod to use the latest docs @CodexRaunak (#19728)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="-contributors"&gt;
 	👨🏽‍💻 Contributors
@@ -35216,7 +35291,7 @@ mesheryctl completion bash &gt; $(brew --prefix)/etc/bash_completion.d/mesheryct
 &lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Navigate to the Extensions Marketplace of Docker Desktop.&lt;/p&gt;</description></item><item><title>Contributing to Meshery Docs</title><link>/project/contributing/contributing-docs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/contributing/contributing-docs/</guid><description>&lt;div class="alert alert-info" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;Important&lt;/div&gt;
+&lt;p&gt;Navigate to the Extensions Marketplace of Docker Desktop.&lt;/p&gt;</description></item><item><title>Contributing to Meshery Docs</title><link>/project/contributing/contributing-docs/docs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/contributing/contributing-docs/docs/</guid><description>&lt;div class="alert alert-info" role="alert"&gt;&lt;div class="h4 alert-heading" role="heading"&gt;Important&lt;/div&gt;
 &lt;p&gt;Before contributing, please review the &lt;a href="https://github.com/meshery/meshery/blob/master/CONTRIBUTING.md#documentation-contribution-flow"&gt;Documentation Contribution Flow&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Use the following steps to set up your development environment depending on your Operating System of choice, fork the repository, install dependencies and run the site locally. You can then make changes, test locally, sign-off and commit, and push the changes made for review.&lt;/p&gt;
@@ -35306,28 +35381,29 @@ and integration-test targets.&lt;/p&gt;</description></item><item><title>Contrib
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#what-is-the-notification-center"&gt;What is the Notification Center?&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#user-facing-features"&gt;User-facing Features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#how-events-reach-the-client"&gt;How Events Reach the Client&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#state-management-and-internal-details"&gt;State Management and Internal Details&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#bulk-operations"&gt;Bulk Operations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#initiating-a-bulk-operation"&gt;Initiating a Bulk Operation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#key-files-and-directories"&gt;Key Files and Directories&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#notificationcenter-root-directory"&gt;&lt;code&gt;NotificationCenter/&lt;/code&gt; &lt;em&gt;(Root Directory)&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#formatters-notificationcenterformatters"&gt;&lt;code&gt;formatters/&lt;/code&gt; &lt;em&gt;(NotificationCenter/formatters)&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#components-outside-the-directory"&gt;Components Outside the Directory&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#metadata-formatter"&gt;Metadata Formatter&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#bodysectionrenderer"&gt;BodySectionRenderer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#arrayrenderer"&gt;ArrayRenderer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#keyvaluerenderer"&gt;KeyValueRenderer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#the-dynamic-formatter"&gt;The Dynamic Formatter&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#the-metadata-specific-formatter"&gt;The Metadata Specific Formatter&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#reusability"&gt;Reusability&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#how-notification-metadata-is-rendered"&gt;How Notification Metadata is Rendered&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#key-files-and-directories"&gt;Key Files and Directories&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#notificationcenter-root-directory"&gt;&lt;code&gt;NotificationCenter/&lt;/code&gt; &lt;em&gt;(Root Directory)&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#formatters-notificationcenterformatters"&gt;&lt;code&gt;formatters/&lt;/code&gt; &lt;em&gt;(NotificationCenter/formatters)&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#registering-an-event-specific-formatter"&gt;Registering an Event Specific Formatter&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#types-of-event-specific-notification-formatters"&gt;Types of Event Specific Notification Formatters&lt;/a&gt;
@@ -35342,18 +35418,20 @@ and integration-test targets.&lt;/p&gt;</description></item><item><title>Contrib
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#user-experience-relationship-evaluation-notification"&gt;User Experience: Relationship Evaluation Notification&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#dry-run-formatter"&gt;Dry Run Formatter&lt;/a&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#dry-run-and-schema-validation-formatters"&gt;Dry Run and Schema Validation Formatters&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#key-components-1"&gt;Key Components&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#when-to-use-1"&gt;When to Use&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#deployment-summary-formatter"&gt;Deployment Summary Formatter&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#key-components-2"&gt;Key Components&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#when-to-use-2"&gt;When to Use&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#meshsync-events-formatter"&gt;MeshSync Events Formatter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#academy-events-formatter"&gt;Academy Events Formatter&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#propertyformatters-and-propertylinkformatters"&gt;PropertyFormatters and PropertyLinkFormatters&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="/project/contributing/ui/notification-center/#examples-of-property-formatters"&gt;Examples of Property Formatters&lt;/a&gt;&lt;/li&gt;
@@ -35856,7 +35934,7 @@ A &lt;strong&gt;&lt;a href="/concepts/logical/designs/"&gt;design&lt;/a&gt;&lt;/
 &lt;h2 id="hands-on-lab"&gt;
 	Hands-on Lab
 &lt;/h2&gt;
-&lt;p&gt;Perform the following steps in order:&lt;/p&gt;</description></item><item><title>Kubevault</title><link>/extensions/models/kubevault/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault/</guid><description/></item><item><title>Kubevault Catalog</title><link>/extensions/models/kubevault-catalog/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-catalog/</guid><description/></item><item><title>Kubevault Crds</title><link>/extensions/models/kubevault-crds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-crds/</guid><description/></item><item><title>Kubevault Metrics</title><link>/extensions/models/kubevault-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-metrics/</guid><description/></item><item><title>Kubevault Operator</title><link>/extensions/models/kubevault-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-operator/</guid><description/></item><item><title>Kubevela</title><link>/extensions/models/kubevela/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevela/</guid><description/></item><item><title>Kubevirt</title><link>/extensions/models/kubevirt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevirt/</guid><description/></item><item><title>Kuma</title><link>/extensions/models/kuma/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kuma/</guid><description/></item><item><title>Kured</title><link>/extensions/models/kured/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kured/</guid><description/></item><item><title>Kusk Gateway</title><link>/extensions/models/kusk-gateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kusk-gateway/</guid><description/></item><item><title>Kyverno</title><link>/extensions/models/kyverno/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno/</guid><description/></item><item><title>Kyverno Monitor</title><link>/extensions/models/kyverno-monitor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno-monitor/</guid><description/></item><item><title>Kyverno Operator</title><link>/extensions/models/kyverno-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno-operator/</guid><description/></item><item><title>Latest Release</title><link>/project/releases/latest/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/releases/latest/</guid><description>&lt;h2&gt;v1.0.64&lt;/h2&gt;</description></item><item><title>Linkerd</title><link>/extensions/models/linkerd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/linkerd/</guid><description/></item><item><title>Linux</title><link>/extensions/models/linux/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/linux/</guid><description/></item><item><title>Litmus Chaos</title><link>/extensions/models/litmus-core/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/litmus-core/</guid><description/></item><item><title>Loki</title><link>/extensions/models/loki/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loki/</guid><description/></item><item><title>Loki Simple Scalable</title><link>/extensions/models/loki-simple-scalable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loki-simple-scalable/</guid><description/></item><item><title>Longhorn</title><link>/extensions/models/longhorn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/longhorn/</guid><description/></item><item><title>LoxiLB</title><link>/extensions/models/loxilb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loxilb/</guid><description/></item><item><title>Managing Connections</title><link>/guides/infrastructure-management/lifecycle-management/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/guides/infrastructure-management/lifecycle-management/</guid><description>&lt;p&gt;&lt;a name="lifecycle-management"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Perform the following steps in order:&lt;/p&gt;</description></item><item><title>Kubevault</title><link>/extensions/models/kubevault/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault/</guid><description/></item><item><title>Kubevault Catalog</title><link>/extensions/models/kubevault-catalog/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-catalog/</guid><description/></item><item><title>Kubevault Crds</title><link>/extensions/models/kubevault-crds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-crds/</guid><description/></item><item><title>Kubevault Metrics</title><link>/extensions/models/kubevault-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-metrics/</guid><description/></item><item><title>Kubevault Operator</title><link>/extensions/models/kubevault-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevault-operator/</guid><description/></item><item><title>Kubevela</title><link>/extensions/models/kubevela/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevela/</guid><description/></item><item><title>Kubevirt</title><link>/extensions/models/kubevirt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kubevirt/</guid><description/></item><item><title>Kuma</title><link>/extensions/models/kuma/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kuma/</guid><description/></item><item><title>Kured</title><link>/extensions/models/kured/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kured/</guid><description/></item><item><title>Kusk Gateway</title><link>/extensions/models/kusk-gateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kusk-gateway/</guid><description/></item><item><title>Kyverno</title><link>/extensions/models/kyverno/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno/</guid><description/></item><item><title>Kyverno Monitor</title><link>/extensions/models/kyverno-monitor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno-monitor/</guid><description/></item><item><title>Kyverno Operator</title><link>/extensions/models/kyverno-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/kyverno-operator/</guid><description/></item><item><title>Latest Release</title><link>/project/releases/latest/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/releases/latest/</guid><description>&lt;h2&gt;v1.0.65&lt;/h2&gt;</description></item><item><title>Linkerd</title><link>/extensions/models/linkerd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/linkerd/</guid><description/></item><item><title>Linux</title><link>/extensions/models/linux/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/linux/</guid><description/></item><item><title>Litmus Chaos</title><link>/extensions/models/litmus-core/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/litmus-core/</guid><description/></item><item><title>Loki</title><link>/extensions/models/loki/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loki/</guid><description/></item><item><title>Loki Simple Scalable</title><link>/extensions/models/loki-simple-scalable/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loki-simple-scalable/</guid><description/></item><item><title>Longhorn</title><link>/extensions/models/longhorn/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/longhorn/</guid><description/></item><item><title>LoxiLB</title><link>/extensions/models/loxilb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/loxilb/</guid><description/></item><item><title>Managing Connections</title><link>/guides/infrastructure-management/lifecycle-management/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/guides/infrastructure-management/lifecycle-management/</guid><description>&lt;p&gt;&lt;a name="lifecycle-management"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Meshery manages hundreds of different types of cloud native infrastructure. See the &lt;a href="/extensions/models/"&gt;full set of integrations&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id="cloud-native-infrastructure-lifecycle-management"&gt;
 	Cloud Native Infrastructure Lifecycle Management
@@ -40823,7 +40901,14 @@ back Meshery security vulnerabilities. We investigate every report thoroughly.&l
 &lt;li&gt;Using Hyper-V to create a Linux VM&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Setting up a Meshery development environment on WSL(2) or Hyper-V is not much different from setting up on a native Linux platform. The same instructions can be followed as already documented.&lt;/p&gt;
-&lt;p&gt;All three methods require the same prerequisites mentioned below in the &lt;a href="/project/contributing/meshery-windows/#prerequisites"&gt;Prerequisites&lt;/a&gt; section but the Linux-based methods/platforms come with some of the prerequisites pre-installed and have no issues with Linux style commands making it easier to setup the environment.&lt;/p&gt;</description></item><item><title>Sidekick</title><link>/extensions/models/sidekick/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/sidekick/</guid><description/></item><item><title>Skooner</title><link>/extensions/models/skooner/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/skooner/</guid><description/></item><item><title>Slack Operator</title><link>/extensions/models/slack-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/slack-operator/</guid><description/></item><item><title>Solr Operator</title><link>/extensions/models/solr-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/solr-operator/</guid><description/></item><item><title>SPIFFE</title><link>/extensions/models/spiffe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/spiffe/</guid><description/></item><item><title>SPIRE</title><link>/extensions/models/spire/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/spire/</guid><description/></item><item><title>Stackgres Operator</title><link>/extensions/models/stackgres-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/stackgres-operator/</guid><description/></item><item><title>Strimzi Kafka Operator</title><link>/extensions/models/strimzi-kafka-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/strimzi-kafka-operator/</guid><description/></item><item><title>Strimzi Registry Operator</title><link>/extensions/models/strimzi-registry-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/strimzi-registry-operator/</guid><description/></item><item><title>Submariner</title><link>/extensions/models/submariner/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/submariner/</guid><description/></item><item><title>supabase</title><link>/extensions/models/supabase/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/supabase/</guid><description/></item><item><title>Superedge</title><link>/extensions/models/superedge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/superedge/</guid><description/></item><item><title>Telepresence</title><link>/extensions/models/telepresence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/telepresence/</guid><description/></item><item><title>Teller</title><link>/extensions/models/teller/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/teller/</guid><description/></item><item><title>Tenant Operator</title><link>/extensions/models/tenant-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/tenant-operator/</guid><description/></item><item><title>Terraform</title><link>/extensions/models/terraform/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/terraform/</guid><description/></item><item><title>Thanos</title><link>/extensions/models/thanos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/thanos/</guid><description/></item><item><title>Thanos Operator</title><link>/extensions/models/thanos-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/thanos-operator/</guid><description/></item><item><title>Tikv Operator</title><link>/extensions/models/tikv-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/tikv-operator/</guid><description/></item><item><title>Tinkerbell</title><link>/extensions/models/tinkerbell/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/tinkerbell/</guid><description/></item><item><title>Tremor</title><link>/extensions/models/tremor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/tremor/</guid><description/></item><item><title>Trickster</title><link>/extensions/models/trickster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/trickster/</guid><description/></item><item><title>Troubleshooting Errors while running Meshery</title><link>/guides/troubleshooting/meshery-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/guides/troubleshooting/meshery-server/</guid><description>&lt;h2 id="mesheryctl-system-start"&gt;
+&lt;p&gt;All three methods require the same prerequisites mentioned below in the &lt;a href="/project/contributing/meshery-windows/#prerequisites"&gt;Prerequisites&lt;/a&gt; section but the Linux-based methods/platforms come with some of the prerequisites pre-installed and have no issues with Linux style commands making it easier to setup the environment.&lt;/p&gt;</description></item><item><title>Shortcode Formatting Examples</title><link>/project/contributing/contributing-docs/shortcode-examples/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/project/contributing/contributing-docs/shortcode-examples/</guid><description>&lt;p&gt;The Meshery documentation uses a variety of shortcodes to create rich, formatted content such as callouts, tabs, and generated tables.&lt;/p&gt;
+&lt;p&gt;This page is a visual reference for documentation contributors. It shows the markdown syntax required to invoke each shortcode, followed by its rendered output, so you can see exactly how a shortcode behaves before using it.&lt;/p&gt;
+&lt;p&gt;Shortcodes come from two places:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/meshery/meshery/tree/master/docs/layouts/shortcodes"&gt;&lt;code&gt;docs/layouts/shortcodes/&lt;/code&gt;&lt;/a&gt; — defined in this repository and documented in full below.&lt;/li&gt;
+&lt;li&gt;The &lt;a href="https://www.docsy.dev/docs/adding-content/shortcodes/"&gt;Docsy theme&lt;/a&gt; — inherited, and summarized under &lt;a href="/project/contributing/contributing-docs/shortcode-examples/#inherited-shortcodes"&gt;Inherited Shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The Meshery documentation also imports &lt;code&gt;github.com/layer5io/docs&lt;/code&gt; as a Hugo module, but that import is mounted to a single partial in &lt;code&gt;hugo.toml&lt;/code&gt; and contributes no shortcodes.&lt;/p&gt;</description></item><item><title>Sidekick</title><link>/extensions/models/sidekick/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/sidekick/</guid><description/></item><item><title>Skooner</title><link>/extensions/models/skooner/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/skooner/</guid><description/></item><item><title>Slack Operator</title><link>/extensions/models/slack-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/slack-operator/</guid><description/></item><item><title>Solr Operator</title><link>/extensions/models/solr-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/solr-operator/</guid><description/></item><item><title>SPIFFE</title><link>/extensions/models/spiffe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/spiffe/</guid><description/></item><item><title>SPIRE</title><link>/extensions/models/spire/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/spire/</guid><description/></item><item><title>Stackgres Operator</title><link>/extensions/models/stackgres-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/stackgres-operator/</guid><description/></item><item><title>Strimzi Kafka Operator</title><link>/extensions/models/strimzi-kafka-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/strimzi-kafka-operator/</guid><description/></item><item><title>Strimzi Registry Operator</title><link>/extensions/models/strimzi-registry-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/strimzi-registry-operator/</guid><description/></item><item><title>Submariner</title><link>/extensions/models/submariner/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/submariner/</guid><description/></item><item><title>supabase</title><link>/extensions/models/supabase/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/supabase/</guid><description/></item><item><title>Superedge</title><link>/extensions/models/superedge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/superedge/</guid><description/></item><item><title>Telepresence</title><link>/extensions/models/telepresence/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/telepresence/</guid><description/></item><item><title>Teller</title><link>/extensions/models/teller/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/teller/</guid><description/></item><item><title>Tenant Operator</title><link>/extensions/models/tenant-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/tenant-operator/</guid><description/></item><item><title>Terraform</title><link>/extensions/models/terraform/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/terraform/</guid><description/></item><item><title>Thanos</title><link>/extensions/models/thanos/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/thanos/</guid><description/></item><item><title>Thanos Operator</title><link>/extensions/models/thanos-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/thanos-operator/</guid><description/></item><item><title>Tikv Operator</title><link>/extensions/models/tikv-operator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/tikv-operator/</guid><description/></item><item><title>Tinkerbell</title><link>/extensions/models/tinkerbell/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/tinkerbell/</guid><description/></item><item><title>Tremor</title><link>/extensions/models/tremor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/tremor/</guid><description/></item><item><title>Trickster</title><link>/extensions/models/trickster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/extensions/models/trickster/</guid><description/></item><item><title>Troubleshooting Errors while running Meshery</title><link>/guides/troubleshooting/meshery-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/guides/troubleshooting/meshery-server/</guid><description>&lt;h2 id="mesheryctl-system-start"&gt;
 	mesheryctl system start
 &lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Error:&lt;/strong&gt;&lt;/p&gt;
