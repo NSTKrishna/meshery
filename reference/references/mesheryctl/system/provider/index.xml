@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>mesheryctl-system-provider on Documentation</title><link>/reference/references/mesheryctl/system/provider/</link><description>Recent content in mesheryctl-system-provider on Documentation</description><generator>Hugo</generator><language>en</language><atom:link href="/reference/references/mesheryctl/system/provider/index.xml" rel="self" type="application/rss+xml"/><item><title>mesheryctl-system-provider-list</title><link>/reference/references/mesheryctl/system/provider/list/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/references/mesheryctl/system/provider/list/</guid><description>&lt;h1 id="mesheryctl-system-provider-list"&gt;
 	mesheryctl system provider list
 &lt;/h1&gt;
-&lt;p&gt;list available providers&lt;/p&gt;
+&lt;p&gt;List available providers&lt;/p&gt;
 &lt;h2 id="synopsis"&gt;
 	Synopsis
 &lt;/h2&gt;
 &lt;p&gt;List current provider and available providers&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider list [flags]
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="examples"&gt;
@@ -18,8 +20,10 @@ mesheryctl system provider list [flags]
 &lt;p&gt;List all available providers&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider list
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="options"&gt;
@@ -56,8 +60,10 @@ mesheryctl system provider list
 &lt;p&gt;Clear the configured provider for the current context. This allows users to select a provider on the next Meshery start. This clears the enforced provider so that users are presented with the provider selection UI on next start.&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider reset [flags]
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="examples"&gt;
@@ -66,8 +72,10 @@ mesheryctl system provider reset [flags]
 &lt;p&gt;Clear the configured provider&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider reset
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="options"&gt;
@@ -97,15 +105,17 @@ mesheryctl system provider reset
 &lt;p&gt;Go back to &lt;a href="/reference/references/mesheryctl/"&gt;command reference index&lt;/a&gt;, if you want to add content manually to the CLI documentation, please refer to the &lt;a href="/project/contributing/cli/cli/#preserving-manually-added-documentation"&gt;instruction&lt;/a&gt; for guidance.&lt;/p&gt;</description></item><item><title>mesheryctl-system-provider-set</title><link>/reference/references/mesheryctl/system/provider/set/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/references/mesheryctl/system/provider/set/</guid><description>&lt;h1 id="mesheryctl-system-provider-set"&gt;
 	mesheryctl system provider set
 &lt;/h1&gt;
-&lt;p&gt;set provider&lt;/p&gt;
+&lt;p&gt;Set provider&lt;/p&gt;
 &lt;h2 id="synopsis"&gt;
 	Synopsis
 &lt;/h2&gt;
 &lt;p&gt;Set provider of context in focus. Run &lt;code&gt;mesheryctl system provider list&lt;/code&gt; to see the available providers.&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider set [provider] [flags]
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="examples"&gt;
@@ -114,8 +124,10 @@ mesheryctl system provider set [provider] [flags]
 &lt;p&gt;Set provider&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider set [provider]
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="options"&gt;
@@ -146,15 +158,17 @@ mesheryctl system provider set [provider]
 &lt;p&gt;Go back to &lt;a href="/reference/references/mesheryctl/"&gt;command reference index&lt;/a&gt;, if you want to add content manually to the CLI documentation, please refer to the &lt;a href="/project/contributing/cli/cli/#preserving-manually-added-documentation"&gt;instruction&lt;/a&gt; for guidance.&lt;/p&gt;</description></item><item><title>mesheryctl-system-provider-switch</title><link>/reference/references/mesheryctl/system/provider/switch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/references/mesheryctl/system/provider/switch/</guid><description>&lt;h1 id="mesheryctl-system-provider-switch"&gt;
 	mesheryctl system provider switch
 &lt;/h1&gt;
-&lt;p&gt;switch provider and redeploy&lt;/p&gt;
+&lt;p&gt;Switch provider and redeploy&lt;/p&gt;
 &lt;h2 id="synopsis"&gt;
 	Synopsis
 &lt;/h2&gt;
 &lt;p&gt;Switch provider of context in focus and redeploy Meshery. Run &lt;code&gt;mesheryctl system provider list&lt;/code&gt; to see the available providers.&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider switch [provider] [flags]
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="examples"&gt;
@@ -163,8 +177,10 @@ mesheryctl system provider switch [provider] [flags]
 &lt;p&gt;Switch provider and redeploy Meshery&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider switch [provider]
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="options"&gt;
@@ -194,15 +210,17 @@ mesheryctl system provider switch [provider]
 &lt;p&gt;Go back to &lt;a href="/reference/references/mesheryctl/"&gt;command reference index&lt;/a&gt;, if you want to add content manually to the CLI documentation, please refer to the &lt;a href="/project/contributing/cli/cli/#preserving-manually-added-documentation"&gt;instruction&lt;/a&gt; for guidance.&lt;/p&gt;</description></item><item><title>mesheryctl-system-provider-view</title><link>/reference/references/mesheryctl/system/provider/view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/reference/references/mesheryctl/system/provider/view/</guid><description>&lt;h1 id="mesheryctl-system-provider-view"&gt;
 	mesheryctl system provider view
 &lt;/h1&gt;
-&lt;p&gt;view provider&lt;/p&gt;
+&lt;p&gt;View provider&lt;/p&gt;
 &lt;h2 id="synopsis"&gt;
 	Synopsis
 &lt;/h2&gt;
 &lt;p&gt;View provider of context in focus.&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider view [flags]
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="examples"&gt;
@@ -211,8 +229,10 @@ mesheryctl system provider view [flags]
 &lt;p&gt;View current provider&lt;/p&gt;
 &lt;pre class='codeblock-pre'&gt;
 &lt;div class='codeblock'&gt;
+&lt;div class='clipboardjs'&gt;
 mesheryctl system provider view
 
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/pre&gt; 
 &lt;h2 id="options"&gt;
